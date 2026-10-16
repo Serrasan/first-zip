@@ -1,0 +1,353 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//First Sip//Competiciones//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:First Sip · Competiciones
+X-WR-TIMEZONE:Europe/Madrid
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:sc-33588@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+SUMMARY:Madrid BJJ Cup GI & NO-GI 2026
+LOCATION:Arganda del Rey\, Madrid\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33588
+URL:https://smoothcomp.com/en/event/33588
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33514@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+SUMMARY:Circuito Canario de BJJ 2026 - 3ª Etapa
+LOCATION:Puerto de la Cruz\, Tenerife\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33514
+URL:https://smoothcomp.com/en/event/33514
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34115@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Open Muro de Alcoy
+LOCATION:Muro de Alcoy (Alicante)\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34115
+URL:https://smoothcomp.com/en/event/34115
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34060@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Aranha Forum Bjj GI Pro
+LOCATION:Barcelona\, España
+DESCRIPTION:Smoothcomp\nGi\nInscripción: Consultar (Precio en Smoothcomp)
+ \nhttps://smoothcomp.com/en/event/34060
+URL:https://smoothcomp.com/en/event/34060
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34104@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Dojjo Open Altea
+LOCATION:Altea\, España
+DESCRIPTION:Smoothcomp\nGi\nInscripción: Consultar (Precio en Smoothcomp)
+ \nhttps://smoothcomp.com/en/event/34104
+URL:https://smoothcomp.com/en/event/34104
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33426@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Huelva Cup 2026 – D-BJJ
+LOCATION:Huelva\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33426
+URL:https://smoothcomp.com/en/event/33426
+END:VEVENT
+BEGIN:VEVENT
+UID:ibjjf-euro-nogi-2026@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261102
+SUMMARY:European IBJJF No-Gi Championship 2026
+LOCATION:Lido di Ostia (Roma)\, Italia
+DESCRIPTION:IBJJF\nNo-Gi\nCampeonato europeo\nInscripción: $180 (Completo
+  · inscripción cerrada)\nInscripción hasta el 2026-10-18\nhttps://ibjjf.c
+ om/events/european-ibjjf-jiu-jitsu-no-gi-championship-2026
+URL:https://ibjjf.com/events/european-ibjjf-jiu-jitsu-no-gi-championship-
+ 2026
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35483@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+SUMMARY:NGNW Invitational
+LOCATION:Barcelona\, España
+DESCRIPTION:Smoothcomp\nNo-Gi\nInscripción: Consultar (Precio en Smoothco
+ mp)\nhttps://smoothcomp.com/en/event/35483
+URL:https://smoothcomp.com/en/event/35483
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33451@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+SUMMARY:Costa Da Morte Cup BJJ GI & NO-GI 2026
+LOCATION:Sada (A Coruña)\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33451
+URL:https://smoothcomp.com/en/event/33451
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34538@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:Kimura Cup Sevilla 2026
+LOCATION:Camas (Sevilla)\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34538
+URL:https://smoothcomp.com/en/event/34538
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33733@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Vinyols Challenge Fall 2026
+LOCATION:Vinyols i els Arcs\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33733
+URL:https://smoothcomp.com/en/event/33733
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35054@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Green Capital 2026
+LOCATION:Vitoria-Gasteiz\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35054
+URL:https://smoothcomp.com/en/event/35054
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33194@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:European Cup 2026 / Gi - No Gi / Kids
+LOCATION:Guadalajara\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33194
+URL:https://smoothcomp.com/en/event/33194
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35227@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:BJJPRO Zaragoza 2026 – Oso Duro
+LOCATION:Zaragoza\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35227
+URL:https://smoothcomp.com/en/event/35227
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34652@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261123
+SUMMARY:Europe Cup BJJ 2026
+LOCATION:Valencia\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34652
+URL:https://smoothcomp.com/en/event/34652
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35538@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:Open Cantabria 2026 – Oso Duro
+LOCATION:Cantabria\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35538
+URL:https://smoothcomp.com/en/event/35538
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34441@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Spain BJJ Cup GI & NO-GI 2026
+LOCATION:Sevilla\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34441
+URL:https://smoothcomp.com/en/event/34441
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-32650@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:BCN Challenge Winter 2026
+LOCATION:El Papiol\, Barcelona\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/32650
+URL:https://smoothcomp.com/en/event/32650
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34473@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:Grand Slam Baiona – D-BJJ
+LOCATION:Baiona\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34473
+URL:https://smoothcomp.com/en/event/34473
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35155@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:Kimura Cup Zaragoza 2026
+LOCATION:Zaragoza\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35155
+URL:https://smoothcomp.com/en/event/35155
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35745@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261214
+SUMMARY:Campeonato de España ADCC
+LOCATION:La Nucía (Alicante)\, España
+DESCRIPTION:ADCC\nNo-Gi\nInscripción: Consultar (Precio en Smoothcomp)\nh
+ ttps://smoothcomp.com/en/event/35745
+URL:https://smoothcomp.com/en/event/35745
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33644@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261213
+DTEND;VALUE=DATE:20261214
+SUMMARY:All Stars BJJ Madrid
+LOCATION:Madrid\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33644
+URL:https://smoothcomp.com/en/event/33644
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35539@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261213
+DTEND;VALUE=DATE:20261214
+SUMMARY:Nacional de Euskadi 2026 – Oso Duro
+LOCATION:Euskadi\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35539
+URL:https://smoothcomp.com/en/event/35539
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34443@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:Ibiza BJJ Cup GI & NO-GI 2026
+LOCATION:Ibiza\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34443
+URL:https://smoothcomp.com/en/event/34443
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-33821@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:GSLS Albacete International Open
+LOCATION:Albacete\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/33821
+URL:https://smoothcomp.com/en/event/33821
+END:VEVENT
+BEGIN:VEVENT
+UID:fcl-grappling-2026@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20261220
+DTEND;VALUE=DATE:20261221
+SUMMARY:Campionat de Catalunya de Grappling
+LOCATION:Poliesportiu La Mina\, Sant Adrià de Besòs\, España
+DESCRIPTION:Fed. Catalana de Lluita\nNo-Gi\nTodas las categorías\nInscrip
+ ción: Consultar (Por confirmar)\nhttps://www.fclluita.cat
+URL:https://www.fclluita.cat
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34442@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20270109
+DTEND;VALUE=DATE:20270111
+SUMMARY:Cataluña BJJ Cup GI & NO-GI 2027
+LOCATION:Castelldefels\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34442
+URL:https://smoothcomp.com/en/event/34442
+END:VEVENT
+BEGIN:VEVENT
+UID:ibjjf-euro-2027@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20270113
+DTEND;VALUE=DATE:20270124
+SUMMARY:European IBJJF Jiu-Jitsu Championship 2027
+LOCATION:Odivelas (Lisboa)\, Portugal
+DESCRIPTION:IBJJF\nGi\nCampeonato europeo\nInscripción: $173 ($186 a part
+ ir del 16 nov)\nInscripción hasta el 2027-01-03\nhttps://ibjjf.com/events
+ /european-ibjjf-jiu-jitsu-championship-2027
+URL:https://ibjjf.com/events/european-ibjjf-jiu-jitsu-championship-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35049@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20270130
+DTEND;VALUE=DATE:20270131
+SUMMARY:Euskadi BJJ Cup GI & NO-GI 2027
+LOCATION:Legutiano (Álava)\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35049
+URL:https://smoothcomp.com/en/event/35049
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-35370@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20270227
+DTEND;VALUE=DATE:20270228
+SUMMARY:Abierto de León D-BJJ 2027
+LOCATION:León\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/35370
+URL:https://smoothcomp.com/en/event/35370
+END:VEVENT
+BEGIN:VEVENT
+UID:sc-34939@first-sip-bjj
+DTSTAMP:20261015T151529Z
+DTSTART;VALUE=DATE:20270522
+DTEND;VALUE=DATE:20270523
+SUMMARY:Grappling Industries Madrid
+LOCATION:Madrid\, España
+DESCRIPTION:Smoothcomp\nGi/No-Gi\nInscripción: Consultar (Precio en Smoot
+ hcomp)\nhttps://smoothcomp.com/en/event/34939
+URL:https://smoothcomp.com/en/event/34939
+END:VEVENT
+END:VCALENDAR
