@@ -396,7 +396,10 @@ nav.tabs::-webkit-scrollbar{display:none}
   .brand img{width:52px}
   .brand h1{font-size:34px}
   .headright{flex-direction:row;align-items:center;gap:8px}
-  .headright .btn{padding:7px 10px;font-size:13px}
+  .headright .btn{padding:7px 10px;font-size:13px;white-space:nowrap}
+  .brand h1{white-space:nowrap}
+  .brand,.brand .txt{flex:none}
+  header.top .count{display:none}
   header.top::after{height:10px;background-size:10px 10px}
   nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:15;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;overflow:visible;background:rgb(246 244 233 / .97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -6px 18px rgb(46 66 111 / .08)}
   nav.tabs a{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 2px;font-size:10.5px;letter-spacing:.02em;min-width:0;border-bottom:0;text-align:center}
