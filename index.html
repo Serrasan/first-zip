@@ -387,13 +387,14 @@ nav.tabs::-webkit-scrollbar{display:none}
 .plframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .plfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 14px;font-size:13px;color:var(--muted)}
 .plfoot a{color:var(--gold-hi);font-weight:600;text-decoration:none}
+.brand .tacita{width:clamp(84px,15vw,132px);height:auto;flex:none;display:block;overflow:visible}
 /* ---- móvil: más compacto y tipo app (el PC no cambia) ---- */
 @media (max-width:640px){
   html,body{overflow-x:clip}
   body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
   header.top .wrap{flex-wrap:nowrap;padding-block:12px 10px;gap:10px}
   .brand{gap:10px}
-  .brand img{width:52px}
+  .brand img,.brand .tacita{width:52px}
   .brand h1{font-size:34px}
   .headright{flex-direction:row;align-items:center;gap:8px}
   .headright .btn{padding:7px 10px;font-size:13px;white-space:nowrap}
@@ -1199,30 +1200,5 @@ renderChips(); render(); showView();
 })();
 </script>
 
-<script>
-// ===== Tacita: se echa la siesta si nadie toca la web; al tocarla se despierta y se bebe el café =====
-(function(){
-  const img=document.querySelector('.logowrap img'); if(!img) return;
-  const wrap=img.closest('.logowrap');
-  const SLEEP_AFTER=40000, WAKE_MS=4800;
-  let state='idle', timer=null, wakeT=null;
-  const set=n=>{ img.src=n+'?v='+Date.now(); };
-  ['tacita-idle.svg','tacita-sleep.svg','tacita-wake.svg'].forEach(n=>{ const i=new Image(); i.src=n; });
-  function sleep(){ if(state==='sleep') return; clearTimeout(wakeT); state='sleep'; set('tacita-sleep.svg'); wrap.title='Zzz… toca para despertarla'; }
-  function wake(){ if(state!=='sleep') return; state='wake'; set('tacita-wake.svg'); wrap.title='Toca la tacita para que se eche una siesta';
-    wakeT=setTimeout(()=>{ state='idle'; set('tacita-idle.svg'); },WAKE_MS); }
-  function arm(){ clearTimeout(timer); timer=setTimeout(sleep,SLEEP_AFTER); }
-  wrap.style.cursor='pointer'; wrap.title='Toca la tacita para que se eche una siesta';
-  wrap.setAttribute('role','button'); wrap.tabIndex=0; wrap.setAttribute('aria-label','Tacita: tócala para dormirla o despertarla');
-  const toggle=e=>{ e.stopPropagation(); if(state==='sleep') wake(); else if(state==='idle') sleep(); arm(); };
-  wrap.addEventListener('click',toggle);
-  wrap.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(e); } });
-  ['pointerdown','keydown','scroll','touchstart','wheel'].forEach(ev=>addEventListener(ev,e=>{
-    if(wrap.contains(e.target)) return;
-    if(state==='sleep') wake(); arm();
-  },{passive:true}));
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden) sleep(); });
-  arm();
-})();
-</script>
+<script src="tacita.js" defer></script>
 </body></html>
