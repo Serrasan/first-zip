@@ -387,24 +387,6 @@ nav.tabs::-webkit-scrollbar{display:none}
 .plframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .plfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 14px;font-size:13px;color:var(--muted)}
 .plfoot a{color:var(--gold-hi);font-weight:600;text-decoration:none}
-/* ---- la tacita camina ---- */
-.logowrap::before{content:"";position:absolute;left:18%;right:18%;bottom:-2px;height:7%;border-radius:50%;background:rgb(46 66 111 / .18);pointer-events:none}
-@media (prefers-reduced-motion:no-preference){
-  .logowrap img{transform-origin:50% 95%;animation:walk 1s ease-in-out .8s infinite}
-  .logowrap::before{animation:walkshadow 1s ease-in-out .8s infinite}
-  .logowrap:hover img{animation-duration:.55s}
-  .logowrap:hover::before{animation-duration:.55s}
-}
-@keyframes walk{
-  0%,100%{transform:translate(-2%,0) rotate(-6deg)}
-  25%{transform:translate(0,-7%) rotate(0deg) scaleY(1.02)}
-  50%{transform:translate(2%,0) rotate(6deg)}
-  75%{transform:translate(0,-7%) rotate(0deg) scaleY(1.02)}
-}
-@keyframes walkshadow{
-  0%,50%,100%{transform:scaleX(1);opacity:1}
-  25%,75%{transform:scaleX(.8);opacity:.6}
-}
 /* ---- móvil: más compacto y tipo app (el PC no cambia) ---- */
 @media (max-width:640px){
   html,body{overflow-x:clip}
@@ -470,7 +452,7 @@ nav.tabs::-webkit-scrollbar{display:none}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <span class="logowrap"><img src="logo.svg" alt="First Sip: taza con cinturón de BJJ"></span>
+      <span class="logowrap"><img src="logo-walk.svg" alt="First Sip: taza con cinturón de BJJ"></span>
       <div class="txt">
         
         <h1>First <span>Sip</span></h1>
