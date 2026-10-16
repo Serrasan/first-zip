@@ -387,6 +387,63 @@ nav.tabs::-webkit-scrollbar{display:none}
 .plframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .plfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 14px;font-size:13px;color:var(--muted)}
 .plfoot a{color:var(--gold-hi);font-weight:600;text-decoration:none}
+/* ---- móvil: más compacto y tipo app (el PC no cambia) ---- */
+@media (max-width:640px){
+  html,body{overflow-x:clip}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  header.top .wrap{flex-wrap:nowrap;padding-block:12px 10px;gap:10px}
+  .brand{gap:10px}
+  .brand img{width:52px}
+  .brand h1{font-size:34px}
+  .headright{flex-direction:row;align-items:center;gap:8px}
+  .headright .btn{padding:7px 10px;font-size:13px}
+  header.top::after{height:10px;background-size:10px 10px}
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:15;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;overflow:visible;background:rgb(246 244 233 / .97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -6px 18px rgb(46 66 111 / .08)}
+  nav.tabs a{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 2px;font-size:10.5px;letter-spacing:.02em;min-width:0;border-bottom:0;text-align:center}
+  nav.tabs a[aria-current="page"]{color:var(--gold)}
+  .tabind{top:0;bottom:auto;height:3px}
+  .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+
+  .home{gap:22px;padding-block:18px 28px}
+  .hhead h2{font-size:24px}
+  .hvid .grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;gap:10px;margin-inline:-16px;padding-inline:16px;padding-bottom:6px;scrollbar-width:none}
+  .hvid .grid::-webkit-scrollbar{display:none}
+  .hvid .card{flex:0 0 44%;scroll-snap-align:start}
+  .hvid .card h3{font-size:16px}
+  .hvid .card .body{padding:10px;gap:6px}
+  .hvid .meta{font-size:10px}
+
+  .filters{position:static}
+  .filters .wrap{gap:8px;padding-block:10px}
+  .filters .row{gap:6px}
+  .search{flex:1 1 100%;padding:9px 11px}
+  select.sel{flex:1 1 calc(50% - 3px);min-width:0;padding:8px;font-size:13px}
+  .tgl{flex:1 1 calc(50% - 3px);padding:8px 10px;font-size:11px}
+  .thumb{aspect-ratio:4/5}
+  .chip{padding:5px 11px;font-size:11px}
+  .legend{display:none}
+  section.videos .wrap{padding-block:14px 28px}
+  .card .body{padding:10px;gap:6px}
+  .card h3{font-size:17px}
+  .card p{display:none}
+  .meta{font-size:10px;gap:2px 8px}
+  .author{font-size:12px}
+  .play{font-size:12px}
+  .play svg{width:18px;height:18px}
+  .mb{min-width:30px;height:30px;font-size:13px}
+  .card .mine{top:6px;right:6px;gap:4px}
+
+  .sechead h2{font-size:30px}
+  .sechead p{font-size:13px}
+  section.comps .wrap,section.timer .wrap{padding-block:18px 28px;gap:14px}
+  .ctools{gap:8px}
+  .comp{padding:12px;gap:10px 12px}
+  .cinfo h3{font-size:18px}
+  .cmeta{font-size:12px}
+  .hc h3{font-size:16px}
+  .ttime{font-size:clamp(80px,28vw,140px)}
+  .tclock{padding:20px 12px}
+}
 </style>
 
 <header class="top">
