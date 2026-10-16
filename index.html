@@ -452,7 +452,7 @@ nav.tabs::-webkit-scrollbar{display:none}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <span class="logowrap"><img src="logo-walk.svg" alt="First Sip: taza con cinturón de BJJ"></span>
+      <span class="logowrap"><img src="tacita-idle.svg" alt="First Sip: taza con cinturón de BJJ"></span>
       <div class="txt">
         
         <h1>First <span>Sip</span></h1>
@@ -1199,4 +1199,30 @@ renderChips(); render(); showView();
 })();
 </script>
 
+<script>
+// ===== Tacita: se echa la siesta si nadie toca la web; al tocarla se despierta y se bebe el café =====
+(function(){
+  const img=document.querySelector('.logowrap img'); if(!img) return;
+  const wrap=img.closest('.logowrap');
+  const SLEEP_AFTER=40000, WAKE_MS=4800;
+  let state='idle', timer=null, wakeT=null;
+  const set=n=>{ img.src=n+'?v='+Date.now(); };
+  ['tacita-idle.svg','tacita-sleep.svg','tacita-wake.svg'].forEach(n=>{ const i=new Image(); i.src=n; });
+  function sleep(){ if(state==='sleep') return; clearTimeout(wakeT); state='sleep'; set('tacita-sleep.svg'); wrap.title='Zzz… toca para despertarla'; }
+  function wake(){ if(state!=='sleep') return; state='wake'; set('tacita-wake.svg'); wrap.title='Toca la tacita para que se eche una siesta';
+    wakeT=setTimeout(()=>{ state='idle'; set('tacita-idle.svg'); },WAKE_MS); }
+  function arm(){ clearTimeout(timer); timer=setTimeout(sleep,SLEEP_AFTER); }
+  wrap.style.cursor='pointer'; wrap.title='Toca la tacita para que se eche una siesta';
+  wrap.setAttribute('role','button'); wrap.tabIndex=0; wrap.setAttribute('aria-label','Tacita: tócala para dormirla o despertarla');
+  const toggle=e=>{ e.stopPropagation(); if(state==='sleep') wake(); else if(state==='idle') sleep(); arm(); };
+  wrap.addEventListener('click',toggle);
+  wrap.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(e); } });
+  ['pointerdown','keydown','scroll','touchstart','wheel'].forEach(ev=>addEventListener(ev,e=>{
+    if(wrap.contains(e.target)) return;
+    if(state==='sleep') wake(); arm();
+  },{passive:true}));
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) sleep(); });
+  arm();
+})();
+</script>
 </body></html>
