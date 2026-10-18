@@ -92,7 +92,7 @@ var star='M0,-24 Q4,-4 24,0 Q4,4 0,24 Q-4,4 -24,0 Q-4,-4 0,-24Z', fx='';
 for(var i=0;i<3;i++) fx+='<g id="tz-z'+i+'" opacity="0"><path d="M-14,-16 H14 L-14,16 H14" fill="none" stroke="'+INK+'" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></g>';
 for(i=0;i<4;i++) fx+='<path id="tz-s'+i+'" d="'+star+'" fill="'+INK+'" opacity="0"/>';
 var esp='<g id="tz-esp" opacity="0"><path d="M-6,-14 C14,-16 16,12 -6,10" fill="none" stroke="'+INK+'" stroke-width="12" stroke-linecap="round"/><path d="M-6,-14 C14,-16 16,12 -6,10" fill="none" stroke="'+WHITE+'" stroke-width="4" stroke-linecap="round"/>'+
-  '<path d="M-58,-26 L-4,-26 L-10,20 Q-11,28 -19,28 L-43,28 Q-51,28 -52,20 Z" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="9" stroke-linejoin="round"/><ellipse cx="-31" cy="-26" rx="27" ry="7" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="8"/><ellipse id="tz-espc" cx="-31" cy="-25" rx="20" ry="4" fill="'+INK+'"/></g>';
+  '<path d="M-58,-26 L-4,-26 L-10,20 Q-11,28 -19,28 L-43,28 Q-51,28 -52,20 Z" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="9" stroke-linejoin="round"/><ellipse cx="-31" cy="-26" rx="27" ry="7" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="8"/><ellipse id="tz-espc" cx="-31" cy="-25" rx="20" ry="4" fill="'+INK+'"/><path id="tz-st0" fill="none" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/><path id="tz-st1" fill="none" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/><path id="tz-st2" fill="none" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/></g>';
 var lid=function(s){ return '<g clip-path="url(#tzc-e'+s+')"><path id="tz-lid'+s+'f" fill="'+BG+'"/><path id="tz-lid'+s+'e" fill="none" stroke="'+INK+'" stroke-width="20" stroke-linecap="round"/></g><path id="tz-lash'+s+'" fill="none" stroke="'+INK+'" stroke-width="9" stroke-linecap="round" opacity="0"/>'; };
 svg.innerHTML=d+
  '<g id="tz-root">'+pc('shadow')+pc('sparkL')+pc('sparkR')+pc('lines')+
@@ -170,7 +170,9 @@ function draw(p,now){
   if(p.drop>0&&p.drop<1){ var k=p.drop; T(E.drop,'translate('+r1(960+20*k)+' '+r1(250+240*k*k)+')'); A(E.drop,'opacity',(Math.sin(Math.PI*k)).toFixed(2)); } else A(E.drop,'opacity',0);
   // tacita de espresso en la mano derecha
   if(p.esp>.02){ var g=apply(FR,G([626,350])), mp=G([462,350]), at=clamp(p.espAt||0); var ex=lerp(g[0],mp[0],at), ey=lerp(g[1],mp[1],at);
-    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(lerp(-5,-38,at))+') scale(2.1)'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl)); }
+    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(lerp(-5,-38,at)+(p.espTilt||0))+') scale(2.6)'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl));
+    for(var si=0;si<3;si++){ var ph=(now*.5+si/3)%1, sx=-40+9*si+3*Math.sin(now*2.2+si*2), sy=-34-30*ph;
+      A(E['st'+si],'d','M'+r1(sx)+','+r1(sy)+' q-5,-5 0,-10 q5,-5 0,-10'); A(E['st'+si],'opacity',(p.steam*Math.sin(Math.PI*ph)*.8).toFixed(2)); } }
   else A(E.esp,'opacity',0);
   // Zzz y destellos de energía
   for(var i=0;i<3;i++){ var kz=(now/6+i/3)%1; T(E['z'+i],'translate('+r1(1060+70*kz+12*Math.sin(kz*6))+' '+r1(130-150*kz)+') scale('+(.8+1*kz).toFixed(2)+')'); A(E['z'+i],'opacity',(p.z*bump(kz,0,.15,.6,1)).toFixed(2)); }
@@ -212,14 +214,15 @@ function fall(u){ // bosteza y se queda frita
   var p=P(), y=bump(u,0,.5,1.1,1.6), d=ss(1.0,2.4,u);
   p.mouth=1; p.mw=lerp(lerp(16,13,y),8,d); p.mo=Math.max(y,.45*d); p.mc=0;
   p.lidL=Math.max(.75*y,d); p.lidR=p.lidL; p.sy=1+.05*y-.02*d; p.sx=1-.02*y+.01*d; p.by=-10*y+8*d; p.rot=-2*y+5*d;
-  p.fR={deg:10*d,dx:-10*d,dy:70*d-30*y}; p.fL={deg:6*d,dx:6*d,dy:24*d}; p.z=ss(1.6,2.4,u); p.bub=.5*ss(1.8,2.4,u); p.twinkle=.25*(1-d);
+  p.fR={deg:lerp(HOLD.deg,4,d),dx:lerp(HOLD.dx,-90,d),dy:lerp(HOLD.dy,120,d)-20*y}; p.fL={deg:6*d,dx:6*d,dy:24*d}; p.z=ss(1.6,2.4,u); p.bub=.5*ss(1.8,2.4,u); p.twinkle=.25*(1-d);
+  p.esp=1; p.steam=1-.5*d; p.espTilt=22*d; p.espLvl=Math.max(.3,1-.14*ev.sips);
   return p;
 }
 function sleep(u){
   var p=P(), b=Math.sin(2*Math.PI*u/3.4);
   p.lidL=1; p.lidR=1; p.mouth=1; p.mw=8; p.mo=.4+.4*b; p.mc=0; p.bub=.5+.5*b; p.z=1;
   p.sy=.98+.02*b; p.sx=1.01-.01*b; p.by=8-3*b; p.rot=5+1.2*b;
-  p.fR={deg:10,dx:-10,dy:70+4*b}; p.fL={deg:6,dx:6,dy:24+3*b};
+  p.fR={deg:4,dx:-90,dy:120+4*b}; p.fL={deg:6,dx:6,dy:24+3*b}; p.esp=1; p.steam=.5; p.espTilt=22+4*b; p.espLvl=Math.max(.3,1-.14*ev.sips);
   return p;
 }
 function wake(u){ // respingo, se toma un espresso y se pone a tope
@@ -237,9 +240,10 @@ function wake(u){ // respingo, se toma un espresso y se pone a tope
   p.rot=lerp(5,0,1-sl)+3*Math.sin(2*Math.PI*(u-.6)/.3)*bump(u,.55,.65,.85,.95)-2*sip+2*Math.sin(2*Math.PI*u/.84)*hype;
   p.by=lerp(8,0,1-sl);
   // la mano trae un espresso a la boca
-  p.esp=ss(.85,1.0,u)*(1-ss(2.75,2.95,u)); p.espLvl=1-ss(1.4,2.35,u); p.espAt=0;
-  p.fR={deg:lerp(lerp(10,0,1-sl),-20,bring)+(-8*gulp), dx:lerp(lerp(-10,0,1-sl),-382,bring), dy:lerp(lerp(70,0,1-sl),-36,bring)-8*gulp};
-  p.fR={deg:lerp(p.fR.deg,-20,hype), dx:lerp(p.fR.dx,20,hype), dy:lerp(p.fR.dy,-120,hype)+20*Math.sin(2*Math.PI*(u-3)/.42)*hype};
+  p.esp=1; p.espLvl=lerp(Math.max(.3,1-.14*ev.sips),.15,ss(1.4,2.35,u))+.85*ss(4.0,4.6,u); p.espTilt=lerp(22,0,1-sl)-14*bring; p.steam=1-bring;
+  var r0={deg:lerp(4,HOLD.deg,1-sl),dx:lerp(-90,HOLD.dx,1-sl),dy:lerp(120,HOLD.dy,1-sl)};
+  p.fR={deg:lerp(r0.deg,SIPPOS.deg,bring)-8*gulp, dx:lerp(r0.dx,SIPPOS.dx,bring), dy:lerp(r0.dy,SIPPOS.dy,bring)-8*gulp};
+  p.fR={deg:lerp(p.fR.deg,-24,hype), dx:lerp(p.fR.dx,-40,hype), dy:lerp(p.fR.dy,-90,hype)+18*Math.sin(2*Math.PI*(u-3)/.42)*hype};
   p.fL={deg:lerp(6,0,1-sl), dx:lerp(6,0,1-sl)+30*hype, dy:lerp(24,0,1-sl)-150*hype+16*Math.sin(2*Math.PI*(u-3.1)/.42)*hype};
   p.spark=hype; p.twinkle=.25+.75*hype; p.z=1-ss(.15,.35,u);
   return p;
@@ -253,29 +257,51 @@ function intro(u){ // el dibujo cobra vida: brillo, se hincha, parpadea y empiez
   p.twinkle=Math.max(.25,p.twinkle*(1-ss(2,3,u)));
   return p;
 }
+
+var HOLD={deg:-12,dx:-120,dy:62}, SIPPOS={deg:-20,dx:-382,dy:-36};
+function coffee(u,now,ev){
+  var p=P(), b=Math.sin(2*Math.PI*u/4.2);
+  p.sy=1+.01*b; p.sx=1-.005*b; p.by=-2*b; p.rot=.6*Math.sin(u*.7); p.twinkle=.25; p.esp=1; p.steam=1;
+  p.fR={deg:HOLD.deg+1.5*b,dx:HOLD.dx,dy:HOLD.dy+3*b}; p.fL.dy=-2*b;
+  p.espLvl=Math.max(.3,1-.14*ev.sips);
+  // sorbo: sube la taza a la boca, ojos cerrados de gusto, traga
+  var st=now-ev.sip, s=bump(st,0,.55,1.75,2.35), gulp=bump(st,.5,.6,1.6,1.75)*Math.max(0,Math.sin(2*Math.PI*(st-.6)/.45));
+  if(s>0){ p.fR={deg:lerp(p.fR.deg,SIPPOS.deg,s)-8*gulp, dx:lerp(p.fR.dx,SIPPOS.dx,s), dy:lerp(p.fR.dy,SIPPOS.dy,s)-8*gulp};
+    p.espTilt=-14*s; p.steam=1-s; p.lidL=p.lidR=.95*ss(.3,.55,st)*(1-ss(1.75,2.0,st)); p.happy=(st>.45&&st<1.95)?1:0;
+    p.rot+=-2.2*s; p.sy+=.012*gulp; p.by-=4*s; }
+  // suspiro de gusto después del sorbo
+  var ah=bump(st,2.2,2.45,3.1,3.5);
+  if(ah>0){ p.mouth=1; p.mw=lerp(16,13,ah); p.mo=.18*ah; p.mc=lerp(-.6,.9,ah); p.sy+=.03*ah; p.by-=5*ah; p.spark=.35*ah; p.lidL=Math.max(p.lidL,.35*ah); p.lidR=p.lidL; }
+  // bostezo de vez en cuando
+  var yt=now-ev.yawn, y=bump(yt,0,.5,1.3,1.9);
+  if(y>0){ p.mouth=1; p.mw=lerp(16,13,y); p.mo=y; p.mc=lerp(-.6,0,y); p.lidL=Math.max(p.lidL,.75*y); p.lidR=p.lidL; p.sy+=.05*y; p.sx-=.02*y; p.by-=10*y; p.rot-=2*y; p.fL.dy-=12*y; }
+  // parpadeo
+  var bt=now-ev.blink; if(bt>=0&&bt<.17){ var bl=1-Math.abs(bt/.085-1); p.lidL=Math.max(p.lidL,bl); p.lidR=Math.max(p.lidR,bl); }
+  return p;
+}
 var DUR={fall:2.4,wake:4.6,intro:5.6};
 
 /* ---------- máquina de estados ---------- */
 var now0=performance.now()/1000;
-var ev={blink:-9,nextBlink:now0+3,walk:-99,walkLen:4.2,nextWalk:now0+14,wipe:-99,nextWipe:now0+24,yawn:-99,nextYawn:now0+34};
+var ev={blink:-9,nextBlink:now0+3,sip:-99,nextSip:now0+9,sips:0,yawn:-99,nextYawn:now0+30};
 var state='intro', t0=now0, from=null, fromT=0, cur=P(), lastAct=now0, raf=0, running=false, ready=false;
 function go(s,now,blend){ if(blend){from=JSON.parse(JSON.stringify(cur));fromT=now;} else from=null; state=s; t0=now; }
 function target(now){
   var u=now-t0;
   if(state==='idle') return idle(u,now,ev);
-  if(state==='intro'){ if(u>=DUR.intro){go('idle',now,false);return idle(0,now,ev);} return intro(u); }
+  if(state==='intro'){ if(u>=DUR.intro){go('coffee',now,false);return coffee(0,now,ev);} return intro(u); }
   if(state==='fall'){ if(u>=DUR.fall){go('sleep',now,false);return sleep(0);} return fall(u); }
   if(state==='sleep') return sleep(u);
-  if(state==='wake'){ if(u>=DUR.wake){go('idle',now,false);return idle(0,now,ev);} return wake(u); }
+  if(state==='wake'){ if(u>=DUR.wake){go('coffee',now,true);ev.sips=0;return coffee(0,now,ev);} return wake(u); }
+  if(state==='coffee') return coffee(u,now,ev);
 }
 function schedule(now){
-  if(state!=='idle') return;
+  if(state!=='coffee') return;
   if(now>ev.nextBlink){ ev.blink=now; ev.nextBlink=now+(rnd()<.2?.3:2.5+rnd()*4); }
-  var busy=(now-ev.walk<ev.walkLen)||(now-ev.wipe<2.3)||(now-ev.yawn<2);
+  var busy=(now-ev.sip<3.6)||(now-ev.yawn<2);
   if(!busy){
-    if(now>ev.nextWalk){ ev.walk=now; ev.walkLen=3.2+rnd()*2.1; ev.nextWalk=now+14+rnd()*12; }
-    else if(now>ev.nextWipe){ ev.wipe=now; ev.nextWipe=now+18+rnd()*14; }
-    else if(now>ev.nextYawn){ ev.yawn=now; ev.nextYawn=now+26+rnd()*18; }
+    if(now>ev.nextSip){ ev.sip=now; ev.sips++; if(ev.sips>5) ev.sips=0; ev.nextSip=now+6+rnd()*6; }
+    else if(now>ev.nextYawn){ ev.yawn=now; ev.nextYawn=now+24+rnd()*18; }
   }
   if(now-lastAct>45) go('fall',now,true);
 }
@@ -291,15 +317,45 @@ function stop(){ running=false; cancelAnimationFrame(raf); }
 
 /* ---------- arranque: el logo quieto se convierte en la marioneta sin que se note ---------- */
 draw(P(),now0);
-if(DEBUG){ svg.style.cssText=''; img.remove(); var fn={rest:P,sleep:function(){return sleep(0);},wake:function(){return wake(1.8);},yawn:function(){return fall(.8);},wipe:function(){var e=Object.assign({},ev);e.wipe=now0-1.0;return idle(0,now0,e);},walk:function(){var p=P();walkPose(p,Math.PI,1);return p;},hype:function(){return wake(3.4);}}[DEBUG]; if(fn) draw(fn(),now0); return; }
+if(DEBUG){ svg.style.cssText=''; img.remove(); var fn={rest:P,sleep:function(){return sleep(0);},wake:function(){return wake(1.8);},yawn:function(){return fall(.8);},wipe:function(){var e=Object.assign({},ev);e.wipe=now0-1.0;return idle(0,now0,e);},walk:function(){var p=P();walkPose(p,Math.PI,1);return p;},hype:function(){return wake(3.4);},coffee:function(){return coffee(0,now0,{sip:-99,yawn:-99,blink:-9,sips:0});},sip:function(){return coffee(0,now0,{sip:now0-1.1,yawn:-99,blink:-9,sips:1});},ahh:function(){return coffee(0,now0,{sip:now0-2.7,yawn:-99,blink:-9,sips:1});}}[DEBUG]; if(fn) draw(fn(),now0); return; }
 function begin(){
   if(ready) return; ready=true;
-  // fundido instantáneo: ambas imágenes son idénticas en reposo
-  svg.style.opacity='1'; img.style.opacity='0';
-  setTimeout(function(){ img.remove(); svg.style.cssText=''; },60);
-  var n=performance.now()/1000; go('intro',n,false); lastAct=n; ev.nextBlink=n+7; start();
+  var fxs=document.createElementNS(NS,'svg'); fxs.setAttribute('viewBox','0 0 1740 1620'); fxs.setAttribute('aria-hidden','true');
+  fxs.style.cssText='position:absolute;left:0;top:0;width:100%;height:auto;overflow:visible;pointer-events:none;z-index:3';
+  var star='M0,-48 Q8,-8 48,0 Q8,8 0,48 Q-8,8 -48,0 Q-8,-8 0,-48Z', h='';
+  for(var i=0;i<12;i++) h+='<circle id="fc'+i+'" r="0" fill="#fff" stroke="'+INK+'" stroke-width="22"/>';
+  for(i=0;i<5;i++) h+='<circle id="fi'+i+'" r="0" fill="#fff"/>';
+  h+='<circle id="fcc" r="0" fill="#fff"/>';
+  for(i=0;i<10;i++) h+='<path id="fl'+i+'" fill="none" stroke="'+INK+'" stroke-width="22" stroke-linecap="round" opacity="0"/>';
+  for(i=0;i<6;i++) h+='<path id="fp'+i+'" d="'+star+'" fill="'+INK+'" opacity="0"/>';
+  for(i=0;i<8;i++) h+='<circle id="fw'+i+'" r="0" fill="#fff" stroke="'+INK+'" stroke-width="12"/>';
+  fxs.innerHTML=h; host.appendChild(fxs);
+  var Q=function(id){return fxs.querySelector('#'+id);};
+  var T0=performance.now()/1000, swapped2=false, CX=880, CY=770;
+  (function tick(){
+    var now=performance.now()/1000, t=now-T0;
+    // ¡puf! de golpe: la nube aparece casi instantánea, aguanta y se deshace en bolitas
+    var grow=easeOut(clamp(t/.12)), hold=ss(.55,1.15,t), fade=ss(.6,1.25,t);
+    for(var i=0;i<12;i++){ var a=i/12*Math.PI*2+.25, rr=(200+70*Math.sin(i*2.3))*grow*(1-fade), d=lerp(140,520,grow)+380*hold;
+      var c=Q('fc'+i); A(c,'cx',r1(CX+Math.cos(a)*d)); A(c,'cy',r1(CY+Math.sin(a)*d*.9)); A(c,'r',r1(Math.max(0,rr))); }
+    for(i=0;i<5;i++){ var a2=i/5*Math.PI*2+1, d2=lerp(40,200,grow)+120*hold; var ci=Q('fi'+i);
+      A(ci,'cx',r1(CX+Math.cos(a2)*d2)); A(ci,'cy',r1(CY+Math.sin(a2)*d2*.9)); A(ci,'r',r1(Math.max(0,260*grow*(1-fade)))); }
+    A(Q('fcc'),'cx',CX); A(Q('fcc'),'cy',CY); A(Q('fcc'),'r',r1(Math.max(0,620*grow*(1-ss(.5,1.0,t)))));
+    for(i=0;i<10;i++){ var a3=i/10*Math.PI*2+.15, kl=clamp(t/.3), r0=lerp(560,700,kl), rr1=lerp(640,900,kl);
+      A(Q('fl'+i),'d','M'+r1(CX+Math.cos(a3)*r0)+','+r1(CY+Math.sin(a3)*r0*.9)+' L'+r1(CX+Math.cos(a3)*rr1)+','+r1(CY+Math.sin(a3)*rr1*.9));
+      A(Q('fl'+i),'opacity',(bump(t,0,.03,.2,.34)).toFixed(2)); }
+    for(i=0;i<6;i++){ var a4=i/6*Math.PI*2+.5, k4=clamp((t-.03*i)/.6), s4=Math.sin(Math.PI*k4), d4=lerp(420,900,k4);
+      T(Q('fp'+i),'translate('+r1(CX+Math.cos(a4)*d4)+' '+r1(CY+Math.sin(a4)*d4*.85)+') rotate('+r1(k4*200)+') scale('+(s4*1.1).toFixed(2)+')'); A(Q('fp'+i),'opacity',s4.toFixed(2)); }
+    // bolitas de humo que se escapan al disiparse
+    for(i=0;i<8;i++){ var a5=i/8*Math.PI*2, k5=clamp((t-.7)/.7), d5=lerp(380,820,k5), r5=Math.max(0,60*Math.sin(Math.PI*k5));
+      var w=Q('fw'+i); A(w,'cx',r1(CX+Math.cos(a5)*d5)); A(w,'cy',r1(CY+Math.sin(a5)*d5*.85-120*k5)); A(w,'r',r1(r5)); }
+    // el cambio ocurre tapado por la nube
+    if(!swapped2&&t>=.1){ swapped2=true; img.style.opacity='0'; svg.style.opacity='1';
+      var n=performance.now()/1000; go('coffee',n,false); ev.sip=n+1.05; ev.sips=0; ev.nextSip=n+9; ev.nextBlink=n+3.2; lastAct=n; start(); }
+    if(t<1.5) requestAnimationFrame(tick); else { fxs.remove(); img.remove(); svg.style.cssText=''; }
+  })();
 }
-var tm=setTimeout(begin,1600);
+var tm=setTimeout(begin,1800);
 
 /* ---------- interacción ---------- */
 host.style.cursor='pointer'; host.setAttribute('tabindex','0'); host.setAttribute('role','button');
@@ -307,7 +363,7 @@ host.title='Toca la tacita: siesta o café'; host.setAttribute('aria-label','Tac
 function poke(){
   if(!ready){ clearTimeout(tm); begin(); return; }
   var now=performance.now()/1000; lastAct=now;
-  if(state==='idle'||state==='intro') go('fall',now,true);
+  if(state==='coffee'||state==='intro') go('fall',now,true);
   else if(state==='sleep'||state==='fall') go('wake',now,true);
 }
 host.addEventListener('click',function(e){e.stopPropagation();poke();});
