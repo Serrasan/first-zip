@@ -4,7 +4,7 @@
 var host=document.querySelector('.logowrap'); if(!host||host.getAttribute('data-tz')) return; host.setAttribute('data-tz','1');
 var img=host.querySelector('img'); if(!img) return;
 var REDUCE=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var DEBUG=/tzpose=([a-z]+)/.exec(location.search); DEBUG=DEBUG&&DEBUG[1];
+var DEBUG=/tzpose=([a-z0-9.]+)/.exec(location.search); DEBUG=DEBUG&&DEBUG[1];
 if(REDUCE&&!DEBUG) return;
 var NS='http://www.w3.org/2000/svg', INK='#2e426f', WHITE='#fff';
 var BG=(function(){ var n=host; while(n&&n!==document.documentElement){ var c=getComputedStyle(n).backgroundColor; if(c&&c!=='transparent'&&!/rgba\(.*,\s*0\)$/.test(c)) return c; n=n.parentElement; } return '#ebead8'; })();
@@ -74,6 +74,25 @@ fetch(img.currentSrc||img.src).then(function(r){return r.text();}).then(function
   build(m[1]);
 }).catch(function(){});
 
+
+// ojos abiertos de golpe (subidón): tapan los originales y dibujan ojos redondos en su estilo
+function wideEyes(){
+  var s='';
+  [[338,292,58,64,-20,350,302,27],[472,232,52,64,4,484,242,29]].forEach(function(e){
+    s+='<ellipse cx="'+e[0]*2+'" cy="'+e[1]*2+'" rx="'+(e[2]+10)*2+'" ry="'+(e[3]+10)*2+'" transform="rotate('+e[4]+' '+e[0]*2+' '+e[1]*2+')" fill="'+BG+'"/>';
+    s+='<g class="tzwe" data-c="'+e[0]*2+','+e[1]*2+'"><ellipse cx="'+e[0]*2+'" cy="'+e[1]*2+'" rx="'+e[2]*2+'" ry="'+e[3]*2+'" transform="rotate('+e[4]+' '+e[0]*2+' '+e[1]*2+')" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="18"/>';
+    s+='<circle cx="'+e[5]*2+'" cy="'+e[6]*2+'" r="'+e[7]*2+'" fill="'+INK+'"/><circle cx="'+(e[5]*2+18)+'" cy="'+(e[6]*2-18)+'" r="12" fill="'+WHITE+'"/><circle cx="'+(e[5]*2-14)+'" cy="'+(e[6]*2+16)+'" r="5" fill="'+WHITE+'"/></g>';
+  });
+  return s;
+}
+// bocanada de vaho al decir "¡ahh!"
+function puffs(){ var s=''; for(var i=0;i<4;i++) s+='<circle id="tz-pf'+i+'" r="0" fill="#fff" stroke="'+INK+'" stroke-width="8"/>'; return s; }
+// rayos de energía
+function bolts(){ var s='', B='M0,-80 L26,-14 L6,-12 L30,70 L-20,-2 L2,-4 L-18,-80Z';
+  for(var i=0;i<4;i++) s+='<path id="tz-bo'+i+'" d="'+B+'" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="10" stroke-linejoin="round" opacity="0"/>'; return s; }
+// gotas de sudor que salen volando al correr
+function flyDrops(){ var s='', D='M0,-26 C-12,-8 -14,4 -8,12 C-2,18 10,18 14,10 C18,0 10,-12 0,-26Z';
+  for(var i=0;i<4;i++) s+='<path id="tz-fd'+i+'" d="'+D+'" fill="#fff" stroke="'+INK+'" stroke-width="7" opacity="0"/>'; return s; }
 function build(ART){
 var svg=document.createElementNS(NS,'svg');
 svg.setAttribute('viewBox','0 0 1740 1620'); svg.setAttribute('class','tacita'); svg.setAttribute('role','img');
@@ -99,13 +118,14 @@ svg.innerHTML=d+
  '<path id="tz-legB" fill="'+INK+'"/>'+pc('shoeB')+'<path id="tz-legF" fill="'+INK+'"/>'+
  '<g id="tz-body"><path id="tz-crotch" fill="'+INK+'" d="'+poly([[444,555.5],[511.4,411.8],[509,592]])+'"/><use href="#tzA" mask="url(#tzm)"/>'+lid('L')+lid('R')+
    '<g id="tz-mouthg" opacity="0"><path d="'+poly(MOUTH.patch)+'" fill="'+BG+'"/><path id="tz-mouth" fill="'+INK+'" stroke="'+INK+'" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/><ellipse id="tz-tongue" rx="10" ry="7" fill="'+WHITE+'" opacity="0"/></g>'+
+   '<g id="tz-wide" opacity="0">'+wideEyes()+'</g><g id="tz-puffs">'+puffs()+'</g>'+
    '<g id="tz-bubg" opacity="0"><circle id="tz-bub" fill="'+WHITE+'" fill-opacity=".55" stroke="'+INK+'" stroke-width="7"/><circle id="tz-bubh" r="5" fill="'+WHITE+'"/></g>'+
    '<path id="tz-drop" d="M0,-26 C-12,-8 -14,4 -8,12 C-2,18 10,18 14,10 C18,0 10,-12 0,-26Z" fill="none" stroke="'+INK+'" stroke-width="7" opacity="0"/>'+
  '</g>'+
  pc('shoeF')+'<path id="tz-armL" fill="'+INK+'"/>'+pc('fistL')+
  '<path id="tz-armR" fill="'+INK+'"/><path id="tz-armRh" fill="none" stroke="'+WHITE+'" stroke-width="9" stroke-linecap="round"/>'+esp+pc('fistR')+
- '</g><g id="tz-fx">'+fx+'</g>';
-svg.style.cssText='position:absolute;left:0;top:0;opacity:0;pointer-events:none';
+ '</g><g id="tz-fx">'+fx+bolts()+flyDrops()+'</g>';
+svg.style.cssText='position:absolute;left:0;top:0;width:100%;height:auto;opacity:0;pointer-events:none';
 host.appendChild(svg);
 var E={}; svg.querySelectorAll('[id^="tz-"]').forEach(function(n){E[n.id.slice(3)]=n;});
 function A(el,k,v){el.setAttribute(k,v);} function T(el,s){el.setAttribute('transform',s);}
@@ -119,7 +139,8 @@ function mix(a,b,w){ if(typeof a==='number') return lerp(a,b,w); var o={}; for(v
 
 /* ---------- dibujar ---------- */
 function draw(p,now){
-  T(E.root,'translate(0 '+r1(p.dropY)+') translate(900 1500) scale('+p.landX.toFixed(3)+' '+p.landY.toFixed(3)+') translate(-900 -1500)');
+  var pop=(p.pop===undefined?1:p.pop);
+  T(E.root,'translate(880 860) scale('+Math.max(.001,pop).toFixed(3)+') rotate('+r1(p.spin||0)+') translate(-880 -860) translate(0 '+r1(p.dropY)+') translate(900 1500) scale('+p.landX.toFixed(3)+' '+p.landY.toFixed(3)+') translate(-900 -1500)');
   var sh=1-Math.min(.6,-p.dropY/500); T(E.shadow,'translate(880 1504) scale('+sh.toFixed(3)+' 1) translate(-880 -1504)');
   // cuerpo
   var hip=G(J.hip), B=rig(hip,p.rot,p.bx,p.by,p.sx,p.sy); T(E.body,tstr(B));
@@ -170,10 +191,26 @@ function draw(p,now){
   if(p.drop>0&&p.drop<1){ var k=p.drop; T(E.drop,'translate('+r1(960+20*k)+' '+r1(250+240*k*k)+')'); A(E.drop,'opacity',(Math.sin(Math.PI*k)).toFixed(2)); } else A(E.drop,'opacity',0);
   // tacita de espresso en la mano derecha
   if(p.esp>.02){ var g=apply(FR,G([626,350])), mp=G([462,350]), at=clamp(p.espAt||0); var ex=lerp(g[0],mp[0],at), ey=lerp(g[1],mp[1],at);
-    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(lerp(-5,-38,at)+(p.espTilt||0))+') scale(2.6)'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl));
+    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(lerp(-5,-38,at)+(p.espTilt||0))+') scale('+(2.6*(p.espScale===undefined?1:p.espScale)).toFixed(2)+')'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl));
     for(var si=0;si<3;si++){ var ph=(now*.5+si/3)%1, sx=-40+9*si+3*Math.sin(now*2.2+si*2), sy=-34-30*ph;
       A(E['st'+si],'d','M'+r1(sx)+','+r1(sy)+' q-5,-5 0,-10 q5,-5 0,-10'); A(E['st'+si],'opacity',(p.steam*Math.sin(Math.PI*ph)*.8).toFixed(2)); } }
   else A(E.esp,'opacity',0);
+
+  // ojos abiertos de golpe
+  var wd=p.wide||0; A(E.wide,'opacity',wd>.5?1:0);
+  if(wd>.5){ var bulge=1+.12*Math.sin(Math.min(1,(wd-.5)*2)*Math.PI)+.05*(p.wob||0);
+    svg.querySelectorAll('.tzwe').forEach(function(g){ var c=g.getAttribute('data-c').split(','); T(g,'translate('+c[0]+' '+c[1]+') scale('+bulge.toFixed(3)+') translate('+(-c[0])+' '+(-c[1])+')'); }); }
+  // vaho del "¡ahh!"
+  var pk=p.puff||0;
+  for(var pi=0;pi<4;pi++){ var c4=E['pf'+pi], kk=clamp(pk*1.25-pi*.08);
+    if(kk>0&&kk<1){ A(c4,'cx',r1(860-170*kk-30*pi)); A(c4,'cy',r1(700-90*kk+(pi%2?20:-20))); A(c4,'r',r1((14+10*pi)*Math.sin(Math.PI*kk))); A(c4,'opacity',1); } else A(c4,'opacity',0); }
+  // rayos de energía alrededor
+  var BO=[[1600,520,20],[120,470,-25],[1560,1180,35],[160,1220,-35]];
+  for(var bi=0;bi<4;bi++){ var on=(p.bolts||0)*(Math.sin(now*31+bi*2.1)>-.2?1:0);
+    T(E['bo'+bi],'translate('+BO[bi][0]+' '+BO[bi][1]+') rotate('+BO[bi][2]+') scale('+(2.3+.3*Math.sin(now*23+bi)).toFixed(2)+')'); A(E['bo'+bi],'opacity',on.toFixed(2)); }
+  // gotas que salen disparadas
+  for(var fi=0;fi<4;fi++){ var kf=((now*1.6)+fi/4)%1, side=fi%2?1:-1;
+    T(E['fd'+fi],'translate('+r1(880+side*(380+260*kf))+' '+r1(360-260*kf+420*kf*kf)+') rotate('+r1(side*kf*90)+')'); A(E['fd'+fi],'opacity',((p.fly||0)*Math.sin(Math.PI*kf)).toFixed(2)); }
   // Zzz y destellos de energía
   for(var i=0;i<3;i++){ var kz=(now/6+i/3)%1; T(E['z'+i],'translate('+r1(1060+70*kz+12*Math.sin(kz*6))+' '+r1(130-150*kz)+') scale('+(.8+1*kz).toFixed(2)+')'); A(E['z'+i],'opacity',(p.z*bump(kz,0,.15,.6,1)).toFixed(2)); }
   var SP=[[300,120,0],[1400,140,.25],[180,900,.5],[1560,820,.75]];
@@ -181,201 +218,140 @@ function draw(p,now){
 }
 
 /* ---------- comportamientos ---------- */
-var rnd=Math.random;
-function walkPose(p,phase,w){ // paso en el sitio alrededor de la pose del dibujo
-  var u=(1-Math.cos(phase))/2, s=Math.sin(phase);
-  p.sF={deg:28*u*w,dx:-34*u*w,dy:52*u*w};               // el pie delantero baja y se apoya
-  p.sB={deg:-16*u*w,dx:26*u*w,dy:-56*u*w};              // el trasero se levanta
-  p.fR={deg:14*u*w,dx:-46*u*w,dy:40*u*w};               // brazos al revés que las piernas
-  p.fL={deg:-12*u*w,dx:44*u*w,dy:-46*u*w};
-  p.by+=(-10*Math.abs(s)-4)*w+4*w; p.rot+=(-3*u)*w; p.sy+=.012*Math.cos(2*phase)*w;
-}
-function idle(u,now,ev){
-  var p=P(), b=Math.sin(2*Math.PI*u/4.2);
-  p.sy=1+.01*b; p.sx=1-.005*b; p.by=-2*b; p.rot=.6*Math.sin(u*.7);
-  p.fR.dy=2*b; p.fL.dy=-2*b; p.twinkle=.25;
-  // paseíto cansado
-  var wt=now-ev.walk, ww=bump(wt,0,.6,ev.walkLen-.6,ev.walkLen);
-  if(ww>0) walkPose(p,2*Math.PI*wt/1.05,ww);
-  p.lines=ww>0?1:1;
-  // se seca el sudor con el puño
-  var st=now-ev.wipe, sw=bump(st,0,.55,1.6,2.2);
-  if(sw>0){ var rub=Math.sin(2*Math.PI*(st-.55)/.42)*bump(st,.5,.6,1.5,1.6);
-    p.fR={deg:-38*sw+6*rub,dx:-170*sw+18*rub,dy:-160*sw+8*rub}; p.rot+=-2*sw; p.lidL=.25*sw; p.lidR=.25*sw; p.drop=st>1.5&&st<2.5?(st-1.5):0; }
-  // bostezo
-  var yt=now-ev.yawn, y=bump(yt,0,.5,1.3,1.9);
-  if(y>0){ p.mouth=1; p.mw=lerp(16,13,y); p.mo=y; p.mc=lerp(-.6,0,y); p.lidL=Math.max(p.lidL,.75*y); p.lidR=Math.max(p.lidR,.75*y); p.sy+=.05*y; p.sx-=.02*y; p.by-=10*y; p.rot-=2*y;
-    p.fR.dy-=30*y; p.fR.deg-=8*y; p.fL.dy-=10*y; }
-  // parpadeo
-  var bt=now-ev.blink; if(bt>=0&&bt<.17){ var bl=1-Math.abs(bt/.085-1); p.lidL=Math.max(p.lidL,bl); p.lidR=Math.max(p.lidR,bl); }
-  return p;
-}
-function fall(u){ // bosteza y se queda frita
-  var p=P(), y=bump(u,0,.5,1.1,1.6), d=ss(1.0,2.4,u);
-  p.mouth=1; p.mw=lerp(lerp(16,13,y),8,d); p.mo=Math.max(y,.45*d); p.mc=0;
-  p.lidL=Math.max(.75*y,d); p.lidR=p.lidL; p.sy=1+.05*y-.02*d; p.sx=1-.02*y+.01*d; p.by=-10*y+8*d; p.rot=-2*y+5*d;
-  p.fR={deg:lerp(HOLD.deg,4,d),dx:lerp(HOLD.dx,-90,d),dy:lerp(HOLD.dy,120,d)-20*y}; p.fL={deg:6*d,dx:6*d,dy:24*d}; p.z=ss(1.6,2.4,u); p.bub=.5*ss(1.8,2.4,u); p.twinkle=.25*(1-d);
-  p.esp=1; p.steam=1-.5*d; p.espTilt=22*d; p.espLvl=Math.max(.3,1-.14*ev.sips);
-  return p;
-}
-function sleep(u){
-  var p=P(), b=Math.sin(2*Math.PI*u/3.4);
-  p.lidL=1; p.lidR=1; p.mouth=1; p.mw=8; p.mo=.4+.4*b; p.mc=0; p.bub=.5+.5*b; p.z=1;
-  p.sy=.98+.02*b; p.sx=1.01-.01*b; p.by=8-3*b; p.rot=5+1.2*b;
-  p.fR={deg:4,dx:-90,dy:120+4*b}; p.fL={deg:6,dx:6,dy:24+3*b}; p.esp=1; p.steam=.5; p.espTilt=22+4*b; p.espLvl=Math.max(.3,1-.14*ev.sips);
-  return p;
-}
-function wake(u){ // respingo, se toma un espresso y se pone a tope
-  var p=P();
-  var st=bump(u,.15,.27,.5,.75), sl=1-ss(.15,.3,u);
-  var bring=bump(u,.9,1.3,2.5,2.9), sip=bump(u,1.25,1.4,2.35,2.5), gulp=sip*Math.max(0,Math.sin(2*Math.PI*(u-1.4)/.45));
-  var hype=bump(u,2.85,3.05,3.9,4.3), hop=hype*Math.max(0,Math.sin(2*Math.PI*(u-2.95)/.42));
-  p.lidL=p.lidR=lerp(0,1,sl)+.9*sip; if(sip>.3) p.happy=1;
-  p.mouth=(u<.9||hype>.05)?1:0;
-  if(u<.15){p.mw=8;p.mo=.45;p.mc=0;} else if(u<.9){p.mw=8;p.mo=.6;p.mc=0;} else {p.mw=lerp(9,20,hype);p.mo=.7*hype;p.mc=lerp(.2,1,hype);}
-  p.bub=Math.max(0,.9-4*u);
-  p.dropY=-36*st-34*hop; if(u>.27&&u<.75){ var k=u-.5; } 
-  var land=Math.exp(-Math.max(0,u-.5)*9)*Math.cos(Math.max(0,u-.5)*22)*(u>.5?1:0);
-  p.landY=1-.1*land-.06*st; p.landX=1+.08*land+.04*st;
-  p.rot=lerp(5,0,1-sl)+3*Math.sin(2*Math.PI*(u-.6)/.3)*bump(u,.55,.65,.85,.95)-2*sip+2*Math.sin(2*Math.PI*u/.84)*hype;
-  p.by=lerp(8,0,1-sl);
-  // la mano trae un espresso a la boca
-  p.esp=1; p.espLvl=lerp(Math.max(.3,1-.14*ev.sips),.15,ss(1.4,2.35,u))+.85*ss(4.0,4.6,u); p.espTilt=lerp(22,0,1-sl)-14*bring; p.steam=1-bring;
-  var r0={deg:lerp(4,HOLD.deg,1-sl),dx:lerp(-90,HOLD.dx,1-sl),dy:lerp(120,HOLD.dy,1-sl)};
-  p.fR={deg:lerp(r0.deg,SIPPOS.deg,bring)-8*gulp, dx:lerp(r0.dx,SIPPOS.dx,bring), dy:lerp(r0.dy,SIPPOS.dy,bring)-8*gulp};
-  p.fR={deg:lerp(p.fR.deg,-24,hype), dx:lerp(p.fR.dx,-40,hype), dy:lerp(p.fR.dy,-90,hype)+18*Math.sin(2*Math.PI*(u-3)/.42)*hype};
-  p.fL={deg:lerp(6,0,1-sl), dx:lerp(6,0,1-sl)+30*hype, dy:lerp(24,0,1-sl)-150*hype+16*Math.sin(2*Math.PI*(u-3.1)/.42)*hype};
-  p.spark=hype; p.twinkle=.25+.75*hype; p.z=1-ss(.15,.35,u);
-  return p;
-}
-function intro(u){ // el dibujo cobra vida: brillo, se hincha, parpadea y empieza a andar
-  var p=P(); p.twinkle=ss(0,.6,u);
-  var inh=bump(u,.6,.9,1.0,1.3); p.sy=1+.05*inh; p.sx=1-.02*inh; p.by=-6*inh;
-  var bt=u-1.25; if(bt>=0&&bt<.2){ var bl=1-Math.abs(bt/.1-1); p.lidL=p.lidR=bl; }
-  var bt2=u-1.6; if(bt2>=0&&bt2<.2){ var bl2=1-Math.abs(bt2/.1-1); p.lidL=p.lidR=bl2; }
-  var ww=bump(u,1.9,2.4,5.1,5.6); if(ww>0) walkPose(p,2*Math.PI*(u-1.9)/1.05,ww);
-  p.twinkle=Math.max(.25,p.twinkle*(1-ss(2,3,u)));
-  return p;
-}
-
-var HOLD={deg:-12,dx:-120,dy:62}, SIPPOS={deg:-20,dx:-382,dy:-36};
-function coffee(u,now,ev){
-  var p=P(), b=Math.sin(2*Math.PI*u/4.2);
-  p.sy=1+.01*b; p.sx=1-.005*b; p.by=-2*b; p.rot=.6*Math.sin(u*.7); p.twinkle=.25; p.esp=1; p.steam=1;
-  p.fR={deg:HOLD.deg+1.5*b,dx:HOLD.dx,dy:HOLD.dy+3*b}; p.fL.dy=-2*b;
-  p.espLvl=Math.max(.3,1-.14*ev.sips);
-  // sorbo: sube la taza a la boca, ojos cerrados de gusto, traga
-  var st=now-ev.sip, s=bump(st,0,.55,1.75,2.35), gulp=bump(st,.5,.6,1.6,1.75)*Math.max(0,Math.sin(2*Math.PI*(st-.6)/.45));
-  if(s>0){ p.fR={deg:lerp(p.fR.deg,SIPPOS.deg,s)-8*gulp, dx:lerp(p.fR.dx,SIPPOS.dx,s), dy:lerp(p.fR.dy,SIPPOS.dy,s)-8*gulp};
-    p.espTilt=-14*s; p.steam=1-s; p.lidL=p.lidR=.95*ss(.3,.55,st)*(1-ss(1.75,2.0,st)); p.happy=(st>.45&&st<1.95)?1:0;
-    p.rot+=-2.2*s; p.sy+=.012*gulp; p.by-=4*s; }
-  // suspiro de gusto después del sorbo
-  var ah=bump(st,2.2,2.45,3.1,3.5);
-  if(ah>0){ p.mouth=1; p.mw=lerp(16,13,ah); p.mo=.18*ah; p.mc=lerp(-.6,.9,ah); p.sy+=.03*ah; p.by-=5*ah; p.spark=.35*ah; p.lidL=Math.max(p.lidL,.35*ah); p.lidR=p.lidL; }
-  // bostezo de vez en cuando
-  var yt=now-ev.yawn, y=bump(yt,0,.5,1.3,1.9);
-  if(y>0){ p.mouth=1; p.mw=lerp(16,13,y); p.mo=y; p.mc=lerp(-.6,0,y); p.lidL=Math.max(p.lidL,.75*y); p.lidR=p.lidL; p.sy+=.05*y; p.sx-=.02*y; p.by-=10*y; p.rot-=2*y; p.fL.dy-=12*y; }
-  // parpadeo
-  var bt=now-ev.blink; if(bt>=0&&bt<.17){ var bl=1-Math.abs(bt/.085-1); p.lidL=Math.max(p.lidL,bl); p.lidR=Math.max(p.lidR,bl); }
-  return p;
-}
-var DUR={fall:2.4,wake:4.6,intro:5.6};
-
-/* ---------- máquina de estados ---------- */
 var now0=performance.now()/1000;
-var ev={blink:-9,nextBlink:now0+3,sip:-99,nextSip:now0+9,sips:0,yawn:-99,nextYawn:now0+30};
-var state='intro', t0=now0, from=null, fromT=0, cur=P(), lastAct=now0, raf=0, running=false, ready=false;
-function go(s,now,blend){ if(blend){from=JSON.parse(JSON.stringify(cur));fromT=now;} else from=null; state=s; t0=now; }
-function target(now){
-  var u=now-t0;
-  if(state==='idle') return idle(u,now,ev);
-  if(state==='intro'){ if(u>=DUR.intro){go('coffee',now,false);return coffee(0,now,ev);} return intro(u); }
-  if(state==='fall'){ if(u>=DUR.fall){go('sleep',now,false);return sleep(0);} return fall(u); }
-  if(state==='sleep') return sleep(u);
-  if(state==='wake'){ if(u>=DUR.wake){go('coffee',now,true);ev.sips=0;return coffee(0,now,ev);} return wake(u); }
-  if(state==='coffee') return coffee(u,now,ev);
+function walkPose(p,phase,w,amp){ amp=amp||1;
+  var u=(1-Math.cos(phase))/2, s=Math.sin(phase);
+  p.sF={deg:28*u*w*amp,dx:-34*u*w*amp,dy:52*u*w*amp};
+  p.sB={deg:-16*u*w*amp,dx:26*u*w*amp,dy:-56*u*w*amp};
+  p.by+=(-10*Math.abs(s)*amp)*w; p.rot+=(-3*u*amp)*w; p.sy+=.012*Math.cos(2*phase)*w;
+  return u;
 }
-function schedule(now){
-  if(state!=='coffee') return;
-  if(now>ev.nextBlink){ ev.blink=now; ev.nextBlink=now+(rnd()<.2?.3:2.5+rnd()*4); }
-  var busy=(now-ev.sip<3.6)||(now-ev.yawn<2);
-  if(!busy){
-    if(now>ev.nextSip){ ev.sip=now; ev.sips++; if(ev.sips>5) ev.sips=0; ev.nextSip=now+6+rnd()*6; }
-    else if(now>ev.nextYawn){ ev.yawn=now; ev.nextYawn=now+24+rnd()*18; }
-  }
-  if(now-lastAct>45) go('fall',now,true);
-}
-function frame(ms){
-  var now=ms/1000; schedule(now);
-  var t=target(now);
-  if(from){ var w=easeOut((now-fromT)/.45); t=mix(from,t,w); if(w>=1) from=null; }
-  cur=t; draw(t,now);
-  if(running) raf=requestAnimationFrame(frame);
-}
-function start(){ if(running) return; running=true; raf=requestAnimationFrame(frame); }
-function stop(){ running=false; cancelAnimationFrame(raf); }
+var HOLD={deg:-12,dx:-120,dy:62}, SIP={deg:-20,dx:-382,dy:-36};
+function pulse(t,c,w){ var k=(t-c)/w; return k<0||k>1?0:Math.sin(Math.PI*k); }
 
-/* ---------- arranque: el logo quieto se convierte en la marioneta sin que se note ---------- */
-draw(P(),now0);
-if(DEBUG){ svg.style.cssText=''; img.remove(); var fn={rest:P,sleep:function(){return sleep(0);},wake:function(){return wake(1.8);},yawn:function(){return fall(.8);},wipe:function(){var e=Object.assign({},ev);e.wipe=now0-1.0;return idle(0,now0,e);},walk:function(){var p=P();walkPose(p,Math.PI,1);return p;},hype:function(){return wake(3.4);},coffee:function(){return coffee(0,now0,{sip:-99,yawn:-99,blink:-9,sips:0});},sip:function(){return coffee(0,now0,{sip:now0-1.1,yawn:-99,blink:-9,sips:1});},ahh:function(){return coffee(0,now0,{sip:now0-2.7,yawn:-99,blink:-9,sips:1});}}[DEBUG]; if(fn) draw(fn(),now0); return; }
-function begin(){
-  if(ready) return; ready=true;
-  var fxs=document.createElementNS(NS,'svg'); fxs.setAttribute('viewBox','0 0 1740 1620'); fxs.setAttribute('aria-hidden','true');
-  fxs.style.cssText='position:absolute;left:0;top:0;width:100%;height:auto;overflow:visible;pointer-events:none;z-index:3';
-  var star='M0,-48 Q8,-8 48,0 Q8,8 0,48 Q-8,8 -48,0 Q-8,-8 0,-48Z', h='';
+/* El corto completo: aparece, bebe, le sube la cafeína y desaparece (9.8 s) */
+var SHOW=9.8;
+function show(u){
+  var p=P(), b=Math.sin(2*Math.PI*u/3.6);
+  p.esp=1; p.steam=1; p.espLvl=1; p.twinkle=.3; p.fR={deg:HOLD.deg,dx:HOLD.dx,dy:HOLD.dy};
+  p.sy=1+.01*b; p.by=-2*b;
+
+  // ---- 1) sale de la nube: crece con rebote girando, salta y aterriza
+  var a=clamp((u-.42)/.34), back=a<1?1+2.4*Math.pow(a-1,3)+1.4*Math.pow(a-1,2):1;
+  p.pop=u<.42?0:(u<.76?back:1); p.spin=u<.76?-28*(1-a):0;
+  if(u>=.42&&u<.95){ p.dropY=-150*Math.sin(Math.PI*clamp((u-.42)/.53)); p.landY=1+.06*Math.sin(Math.PI*clamp((u-.42)/.53)); p.landX=1-.04*Math.sin(Math.PI*clamp((u-.42)/.53)); }
+  var k=Math.max(0,u-.95), land=u>=.95?Math.exp(-k*8)*Math.cos(k*22):0;
+  if(u>=.95){ p.landY=1-.16*land; p.landX=1+.12*land; p.espTilt=8*Math.exp(-k*6)*Math.sin(k*18); }
+  if(u<1.1){ p.lidL=p.lidR=.15; }
+
+  // ---- 2) bebe
+  var look=bump(u,1.25,1.5,1.85,2.05);                       // mira la taza y la huele
+  p.rot+=3*look; p.lidL=Math.max(p.lidL,.35*look); p.lidR=p.lidL; p.brow=.3*look;
+  var dip=bump(u,1.85,1.98,2.02,2.15);                        // anticipación: baja un poco antes de subir
+  var up=ss(2.0,2.45,u)*(1-ss(4.2,4.65,u));                    // sube a la boca
+  var drink=ss(2.4,4.15,u)*(1-ss(4.2,4.4,u));
+  var g=pulse(u,2.62,.38)+pulse(u,3.18,.38)+pulse(u,3.74,.38);  // tres tragos
+  p.fR={deg:lerp(HOLD.deg,SIP.deg,up)-10*g-6*drink, dx:lerp(HOLD.dx,SIP.dx,up), dy:lerp(HOLD.dy,SIP.dy,up)+22*dip-10*g};
+  p.espTilt=(p.espTilt||0)-lerp(0,16,up)-30*drink;
+  p.rot+=-6*drink-2*up; p.by-=8*drink; p.sy+=.022*g; p.sx-=.01*g;
+  p.espLvl=1-ss(2.5,4.0,u)*.92; p.steam=1-up;
+  if(u>2.3&&u<4.3){ p.lidL=p.lidR=.95; p.happy=1; p.brow=.5; }
+  // "¡ahh!" con vaho
+  var ah=bump(u,4.55,4.75,5.05,5.3);
+  if(ah>0){ p.mouth=1; p.mw=lerp(16,14,ah); p.mo=.4*ah; p.mc=lerp(-.6,.8,ah); p.lidL=p.lidR=Math.max(p.lidL,.5*ah); p.sy-=.02*ah; p.by+=4*ah; }
+  p.puff=clamp((u-4.6)/.7);
+
+  // ---- 3) le pega la cafeína
+  var kick=ss(5.25,5.35,u)*(1-ss(8.9,9.0,u));
+  if(u>=5.25){
+    p.wide=kick; p.wob=Math.sin(u*40);
+    p.esp=u<5.45?1:0; p.espScale=1+3*clamp((u-5.25)/.2); if(u>=5.25&&u<5.45) p.espLvl=0;
+    var st=bump(u,5.25,5.4,5.55,5.8); p.sy+=.12*st; p.sx-=.06*st; p.by-=26*st; p.brow=1.5*kick;
+    var jit=bump(u,5.35,5.45,5.85,5.95); p.bx+=12*Math.sin(u*95)*jit; p.rot+=3*Math.sin(u*83)*jit;
+    p.spark=kick; p.twinkle=1; p.bolts=bump(u,5.35,5.45,8.6,8.85);
+    // carrera a toda velocidad en el sitio
+    var run=bump(u,5.85,6.05,7.95,8.15), ph=2*Math.PI*(u-5.85)*2.4;
+    var uu=walkPose(p,ph,run,1.25);
+    var sw=Math.sin(ph);
+    p.fR={deg:lerp(-10,-30,run)+10*sw*run, dx:lerp(HOLD.dx,-40,kick)-40*sw*run, dy:lerp(HOLD.dy,-60,kick)+36*sw*run};
+    p.fL={deg:-10*run*sw, dx:30*kick+40*sw*run, dy:-90*kick-36*sw*run};
+    p.fly=run; p.mouth=1; p.mw=20; p.mo=.72; p.mc=1;
+    // pose de victoria
+    var win=bump(u,8.1,8.3,8.85,9.0);
+    p.fR={deg:lerp(p.fR.deg,-28,win), dx:lerp(p.fR.dx,-30,win), dy:lerp(p.fR.dy,-170,win)};
+    p.fL={deg:lerp(p.fL.deg,-12,win), dx:lerp(p.fL.dx,40,win), dy:lerp(p.fL.dy,-190,win)};
+    p.sy+=.05*win; p.by-=14*win;
+  }
+  // ---- 4) vuelve a la nube: se aplasta y desaparece girando
+  var go=clamp((u-9.0)/.25), sq=bump(u,8.85,8.98,9.0,9.05);
+  p.landY*=1-.12*sq; p.landX*=1+.1*sq;
+  if(u>=9.0){ p.pop=1-go*go; p.spin=40*go; }
+  return p;
+}
+
+/* ---------- nube blanca (se reutiliza para entrar y salir) ---------- */
+var fxs=document.createElementNS(NS,'svg'); fxs.setAttribute('viewBox','0 0 1740 1620'); fxs.setAttribute('aria-hidden','true');
+fxs.style.cssText='position:absolute;left:0;top:0;width:100%;height:auto;overflow:visible;pointer-events:none;z-index:3;display:none';
+(function(){ var star='M0,-48 Q8,-8 48,0 Q8,8 0,48 Q-8,8 -48,0 Q-8,-8 0,-48Z', h='';
   for(var i=0;i<12;i++) h+='<circle id="fc'+i+'" r="0" fill="#fff" stroke="'+INK+'" stroke-width="22"/>';
   for(i=0;i<5;i++) h+='<circle id="fi'+i+'" r="0" fill="#fff"/>';
   h+='<circle id="fcc" r="0" fill="#fff"/>';
   for(i=0;i<10;i++) h+='<path id="fl'+i+'" fill="none" stroke="'+INK+'" stroke-width="22" stroke-linecap="round" opacity="0"/>';
   for(i=0;i<6;i++) h+='<path id="fp'+i+'" d="'+star+'" fill="'+INK+'" opacity="0"/>';
   for(i=0;i<8;i++) h+='<circle id="fw'+i+'" r="0" fill="#fff" stroke="'+INK+'" stroke-width="12"/>';
-  fxs.innerHTML=h; host.appendChild(fxs);
-  var Q=function(id){return fxs.querySelector('#'+id);};
-  var T0=performance.now()/1000, swapped2=false, CX=880, CY=770;
-  (function tick(){
-    var now=performance.now()/1000, t=now-T0;
-    // ¡puf! de golpe: la nube aparece casi instantánea, aguanta y se deshace en bolitas
-    var grow=easeOut(clamp(t/.12)), hold=ss(.55,1.15,t), fade=ss(.6,1.25,t);
-    for(var i=0;i<12;i++){ var a=i/12*Math.PI*2+.25, rr=(200+70*Math.sin(i*2.3))*grow*(1-fade), d=lerp(140,520,grow)+380*hold;
-      var c=Q('fc'+i); A(c,'cx',r1(CX+Math.cos(a)*d)); A(c,'cy',r1(CY+Math.sin(a)*d*.9)); A(c,'r',r1(Math.max(0,rr))); }
-    for(i=0;i<5;i++){ var a2=i/5*Math.PI*2+1, d2=lerp(40,200,grow)+120*hold; var ci=Q('fi'+i);
-      A(ci,'cx',r1(CX+Math.cos(a2)*d2)); A(ci,'cy',r1(CY+Math.sin(a2)*d2*.9)); A(ci,'r',r1(Math.max(0,260*grow*(1-fade)))); }
-    A(Q('fcc'),'cx',CX); A(Q('fcc'),'cy',CY); A(Q('fcc'),'r',r1(Math.max(0,620*grow*(1-ss(.5,1.0,t)))));
-    for(i=0;i<10;i++){ var a3=i/10*Math.PI*2+.15, kl=clamp(t/.3), r0=lerp(560,700,kl), rr1=lerp(640,900,kl);
-      A(Q('fl'+i),'d','M'+r1(CX+Math.cos(a3)*r0)+','+r1(CY+Math.sin(a3)*r0*.9)+' L'+r1(CX+Math.cos(a3)*rr1)+','+r1(CY+Math.sin(a3)*rr1*.9));
-      A(Q('fl'+i),'opacity',(bump(t,0,.03,.2,.34)).toFixed(2)); }
-    for(i=0;i<6;i++){ var a4=i/6*Math.PI*2+.5, k4=clamp((t-.03*i)/.6), s4=Math.sin(Math.PI*k4), d4=lerp(420,900,k4);
-      T(Q('fp'+i),'translate('+r1(CX+Math.cos(a4)*d4)+' '+r1(CY+Math.sin(a4)*d4*.85)+') rotate('+r1(k4*200)+') scale('+(s4*1.1).toFixed(2)+')'); A(Q('fp'+i),'opacity',s4.toFixed(2)); }
-    // bolitas de humo que se escapan al disiparse
-    for(i=0;i<8;i++){ var a5=i/8*Math.PI*2, k5=clamp((t-.7)/.7), d5=lerp(380,820,k5), r5=Math.max(0,60*Math.sin(Math.PI*k5));
-      var w=Q('fw'+i); A(w,'cx',r1(CX+Math.cos(a5)*d5)); A(w,'cy',r1(CY+Math.sin(a5)*d5*.85-120*k5)); A(w,'r',r1(r5)); }
-    // el cambio ocurre tapado por la nube
-    if(!swapped2&&t>=.1){ swapped2=true; img.style.opacity='0'; svg.style.opacity='1';
-      var n=performance.now()/1000; go('coffee',n,false); ev.sip=n+1.05; ev.sips=0; ev.nextSip=n+9; ev.nextBlink=n+3.2; lastAct=n; start(); }
-    if(t<1.5) requestAnimationFrame(tick); else { fxs.remove(); img.remove(); svg.style.cssText=''; }
-  })();
+  fxs.innerHTML=h; host.appendChild(fxs); })();
+function Q(id){return fxs.querySelector('#'+id);}
+function cloud(t){ // t desde el ¡puf! (0 .. 1.3)
+  var CX=880, CY=770, grow=easeOut(clamp(t/.11)), hold=ss(.5,1.1,t), fade=ss(.55,1.2,t);
+  for(var i=0;i<12;i++){ var a=i/12*Math.PI*2+.25, rr=(200+70*Math.sin(i*2.3))*grow*(1-fade), d=lerp(140,520,grow)+380*hold;
+    A(Q('fc'+i),'cx',r1(CX+Math.cos(a)*d)); A(Q('fc'+i),'cy',r1(CY+Math.sin(a)*d*.9)); A(Q('fc'+i),'r',r1(Math.max(0,rr))); }
+  for(i=0;i<5;i++){ var a2=i/5*Math.PI*2+1, d2=lerp(40,200,grow)+120*hold;
+    A(Q('fi'+i),'cx',r1(CX+Math.cos(a2)*d2)); A(Q('fi'+i),'cy',r1(CY+Math.sin(a2)*d2*.9)); A(Q('fi'+i),'r',r1(Math.max(0,260*grow*(1-fade)))); }
+  A(Q('fcc'),'cx',CX); A(Q('fcc'),'cy',CY); A(Q('fcc'),'r',r1(Math.max(0,620*grow*(1-ss(.45,.95,t)))));
+  for(i=0;i<10;i++){ var a3=i/10*Math.PI*2+.15, kl=clamp(t/.3), r0=lerp(560,700,kl), rr1=lerp(640,900,kl);
+    A(Q('fl'+i),'d','M'+r1(CX+Math.cos(a3)*r0)+','+r1(CY+Math.sin(a3)*r0*.9)+' L'+r1(CX+Math.cos(a3)*rr1)+','+r1(CY+Math.sin(a3)*rr1*.9));
+    A(Q('fl'+i),'opacity',(bump(t,0,.03,.2,.34)).toFixed(2)); }
+  for(i=0;i<6;i++){ var a4=i/6*Math.PI*2+.5, k4=clamp((t-.03*i)/.6), s4=Math.sin(Math.PI*k4), d4=lerp(420,900,k4);
+    T(Q('fp'+i),'translate('+r1(CX+Math.cos(a4)*d4)+' '+r1(CY+Math.sin(a4)*d4*.85)+') rotate('+r1(k4*200)+') scale('+(s4*1.1).toFixed(2)+')'); A(Q('fp'+i),'opacity',s4.toFixed(2)); }
+  for(i=0;i<8;i++){ var a5=i/8*Math.PI*2, k5=clamp((t-.65)/.65), d5=lerp(380,820,k5), r5=Math.max(0,60*Math.sin(Math.PI*k5));
+    A(Q('fw'+i),'cx',r1(CX+Math.cos(a5)*d5)); A(Q('fw'+i),'cy',r1(CY+Math.sin(a5)*d5*.85-120*k5)); A(Q('fw'+i),'r',r1(r5)); }
 }
-var tm=setTimeout(begin,1800);
 
-/* ---------- interacción ---------- */
-host.style.cursor='pointer'; host.setAttribute('tabindex','0'); host.setAttribute('role','button');
-host.title='Toca la tacita: siesta o café'; host.setAttribute('aria-label','Tacita: tócala para que se duerma o se despierte');
-function poke(){
-  if(!ready){ clearTimeout(tm); begin(); return; }
-  var now=performance.now()/1000; lastAct=now;
-  if(state==='coffee'||state==='intro') go('fall',now,true);
-  else if(state==='sleep'||state==='fall') go('wake',now,true);
+/* ---------- logo quieto <-> corto ---------- */
+img.style.transformOrigin='50% 52%'; img.style.willChange='transform,opacity';
+var mode='static', T0=0, raf=0, nextShow=0, visible=true;
+function imgTf(s,r,sx,sy){ img.style.transform='rotate('+r.toFixed(2)+'deg) scale('+(s*sx).toFixed(3)+','+(s*sy).toFixed(3)+')'; }
+function frame(ms){
+  var now=ms/1000;
+  if(mode==='show'){
+    var u=now-T0;
+    // logo: anticipación (se aplasta) y desaparece girando dentro de la nube
+    if(u<.5){ var sq=bump(u,0,.14,.18,.24), g=clamp((u-.2)/.2); imgTf(1-g*g,-30*g,1+.1*sq,1-.14*sq); img.style.opacity=u<.4?'1':'0'; }
+    // nube de entrada y de salida
+    var c1=u-.2, c2=u-9.0;
+    if(c1>=0&&c1<1.3){ fxs.style.display=''; cloud(c1); } else if(c2>=0&&c2<1.3){ fxs.style.display=''; cloud(c2); } else fxs.style.display='none';
+    // la tacita viva
+    if(u>=.4&&u<9.3){ svg.style.opacity='1'; draw(show(u),now); } else svg.style.opacity='0';
+    // el logo vuelve a salir de la nube con rebote
+    if(u>=9.25){ var a=clamp((u-9.25)/.4), back=1+2.2*Math.pow(a-1,3)+1.2*Math.pow(a-1,2); img.style.opacity='1'; imgTf(a<1?back:1,24*(1-a),1,1); }
+    if(u>=SHOW+.5){ mode='static'; fxs.style.display='none'; svg.style.opacity='0'; img.style.transform=''; img.style.opacity='1'; nextShow=now+16+Math.random()*8; }
+  } else if(now>nextShow&&visible&&!document.hidden){ play(now); }
+  raf=requestAnimationFrame(frame);
 }
+function play(now){ mode='show'; T0=now; draw(show(0),now); }
+nextShow=performance.now()/1000+1.8;
+draw(P(),performance.now()/1000);
+raf=requestAnimationFrame(frame);
+
+if(DEBUG){ var dt=parseFloat(DEBUG.replace(/[^0-9.]/g,''))||0; if(/^s/.test(DEBUG)){ cancelAnimationFrame(raf); img.style.opacity='0'; svg.style.opacity='1'; draw(show(dt),now0+dt); } }
+
+/* ---------- interacción: tocar el logo lanza el corto ---------- */
+host.style.cursor='pointer'; host.setAttribute('tabindex','0'); host.setAttribute('role','button');
+host.title='Toca la tacita: ¡café!'; host.setAttribute('aria-label','Tacita: tócala para que se tome un café');
+function poke(){ var now=performance.now()/1000; if(mode==='static') play(now); }
 host.addEventListener('click',function(e){e.stopPropagation();poke();});
 host.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
-['pointerdown','keydown','scroll','wheel','touchstart'].forEach(function(n){
-  addEventListener(n,function(e){ if(host.contains(e.target)) return; var now=performance.now()/1000; lastAct=now;
-    if(ready&&(state==='sleep'||state==='fall')) go('wake',now,true); },{passive:true});
-});
-document.addEventListener('visibilitychange',function(){
-  if(!ready) return; var now=performance.now()/1000;
-  if(document.hidden){ stop(); if(state!=='sleep'){state='sleep';t0=now;from=null;} } else start();
-});
-if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(x){ if(!ready) return; x.isIntersecting&&!document.hidden?start():stop(); }); }).observe(svg); }
+document.addEventListener('visibilitychange',function(){ if(document.hidden&&mode==='show'){ mode='static'; fxs.style.display='none'; svg.style.opacity='0'; img.style.transform=''; img.style.opacity='1'; } });
+if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(x){ visible=x.isIntersecting; }); }).observe(host); }
 }
 })();
