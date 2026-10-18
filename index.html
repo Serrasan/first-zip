@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ebead8"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>First Sip</title>
 <meta name="apple-mobile-web-app-title" content="First Sip">
 <meta name="application-name" content="First Sip">
@@ -388,6 +388,12 @@ nav.tabs::-webkit-scrollbar{display:none}
 .plfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 14px;padding:10px 14px;font-size:13px;color:var(--muted)}
 .plfoot a{color:var(--gold-hi);font-weight:600;text-decoration:none}
 .brand .tacita{width:clamp(84px,15vw,132px);height:auto;flex:none;display:block;overflow:visible}
+.installbtn{white-space:nowrap}
+.iosTip{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:35;width:min(92vw,380px);background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:6px;padding:14px 16px;box-shadow:0 12px 40px rgb(46 66 111 / .25);font-size:14px;display:flex;flex-direction:column;gap:8px}
+.iosTip b{font-family:var(--f-display);font-size:18px;text-transform:uppercase}
+.iosTip ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.iosTip .btn{align-self:flex-end}
+@media (display-mode: standalone){.installbtn{display:none!important}}
 /* ---- móvil: más compacto y tipo app (el PC no cambia) ---- */
 @media (max-width:640px){
   html,body{overflow-x:clip}
@@ -463,6 +469,7 @@ nav.tabs::-webkit-scrollbar{display:none}
       <nav class="tabs" id="tabs"><span class="tabind" id="tabind" aria-hidden="true"></span><a href="#inicio" data-v="inicio">Inicio</a><a href="#videos" data-v="videos">Vídeos</a><a href="#competiciones" data-v="competiciones">Competiciones</a><a href="#timer" data-v="timer">Timer</a></nav>
       <span class="count" id="count">Cargando vídeos…</span>
       <button class="btn" id="addBtn" hidden>+ Añadir vídeo</button>
+      <button class="btn ghost installbtn" id="installBtn" hidden>📲 Instalar app</button>
     </div>
   </div>
 </header>
@@ -1201,4 +1208,30 @@ renderChips(); render(); showView();
 </script>
 
 <script src="tacita.js" defer></script>
+<script>
+// ===== App instalable (PWA) =====
+(function(){
+  if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+    addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+  var btn=document.getElementById('installBtn'); if(!btn) return;
+  var standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(standalone) return;
+  var deferred=null;
+  addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; btn.hidden=false; });
+  addEventListener('appinstalled',function(){ btn.hidden=true; deferred=null; toast('¡First Sip instalada! Búscala en tu pantalla de inicio'); });
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  if(ios) btn.hidden=false;
+  btn.addEventListener('click',function(){
+    if(deferred){ deferred.prompt(); deferred.userChoice.finally(function(){ deferred=null; btn.hidden=true; }); return; }
+    if(ios){
+      if(document.getElementById('iosTip')) return;
+      var d=document.createElement('div'); d.className='iosTip'; d.id='iosTip'; d.setAttribute('role','dialog');
+      d.innerHTML='<b>Instalar First Sip</b><ol><li>Pulsa <b style="font:inherit;text-transform:none">Compartir</b> (el cuadrado con la flecha ↑) abajo en Safari.</li><li>Elige <b style="font:inherit;text-transform:none">Añadir a pantalla de inicio</b>.</li><li>Pulsa <b style="font:inherit;text-transform:none">Añadir</b>. ¡Listo!</li></ol><button class="btn ghost" type="button">Entendido</button>';
+      d.querySelector('button').onclick=function(){ d.remove(); };
+      document.body.appendChild(d);
+    }
+  });
+})();
+</script>
 </body></html>
