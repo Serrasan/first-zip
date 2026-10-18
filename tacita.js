@@ -62,7 +62,7 @@ var MOUTH={patch:[[370,358],[378,390],[400,388],[472,360],[492,342],[486,322],[4
 var J={
  hip:[460,480],
  shR:[551.2,200.7], armR:{c1:[632.4,181.6],c2:[685.6,171.6],p3:[688.1,244.9],w0:42.3,w1:41.9}, fistR:[690,282],
- shL:[197.4,414.3], armL:{c1:[124.5,478.3],c2:[29.4,572.3],p3:[120.6,572.5],w0:43.2,w1:40.3}, fistL:[160,570],
+ shL:[197.4,414.3], armL:{c1:[124.5,478.3],c2:[29.4,580],p3:[150,582],w0:43.2,w1:40.3}, fistL:[160,570], cfL:[226,556], cfR:[680,372],
  hipB:[426.8,501.3], legB:{c1:[473.8,534.6],c2:[424.3,562.8],p3:[347.5,592.7],w0:46.8,w1:33.5}, shoeB:[310,630],
  hipF:[494.9,467.3], legF:{c1:[500.6,541.5],c2:[463.9,559.1],p3:[563.4,601.8],w0:43.5,w1:19.7}, shoeF:[575,600],
  nose:[436,312]
@@ -154,17 +154,20 @@ function draw(p,now){
       SF=rig(G(J.shoeF),p.sF.deg,p.sF.dx,p.sF.dy), SB=rig(G(J.shoeB),p.sB.deg,p.sB.dx,p.sB.dy);
   T(E.fistR,tstr(FR)); T(E.fistL,tstr(FL)); T(E.shoeF,tstr(SF)); T(E.shoeB,tstr(SB));
   // mangueras: el arranque se mueve con el cuerpo y el final con la mano/pie
-  function limb(el,sh,L,piv,TT,hose){
+  function limb(el,sh,L,piv,TT,hose,cen){
     var a=apply(B,G(sh)), c1=apply(B,G(L.c1)), c2=apply(TT,G(L.c2)), e=apply(TT,G(L.p3));
     if(hose){ // cuando la mano se aleja de la pose del dibujo, el brazo pasa a ser una manguera natural con el codo hacia fuera
       var off=Math.hypot(TT.dx,TT.dy)+Math.abs(TT.deg)*4, w=clamp((off-15)/110);
       if(w>0){ var dx=e[0]-a[0], dy=e[1]-a[1], Ln=Math.hypot(dx,dy)||1, nx=-dy/Ln, ny=dx/Ln, mx=(a[0]+e[0])/2, my=(a[1]+e[1])/2;
         if(Math.hypot(mx+nx*50-880,my+ny*50-900)<Math.hypot(mx-nx*50-880,my-ny*50-900)){ nx=-nx; ny=-ny; }
-        var bend=Math.max(50,(hose-Ln)*.55);
+        if(cen){ var fc=apply(TT,G(cen)), vx=a[0]-fc[0], vy=a[1]-fc[1], vl=Math.hypot(vx,vy)||1, ew=[fc[0]+vx/vl*70,fc[1]+vy/vl*70];
+          e=[lerp(e[0],ew[0],w),lerp(e[1],ew[1],w)]; dx=e[0]-a[0]; dy=e[1]-a[1]; Ln=Math.hypot(dx,dy)||1; nx=-dy/Ln; ny=dx/Ln; mx=(a[0]+e[0])/2; my=(a[1]+e[1])/2;
+          if(Math.hypot(mx+nx*50-880,my+ny*50-900)<Math.hypot(mx-nx*50-880,my-ny*50-900)){ nx=-nx; ny=-ny; } }
+        var bend=Math.max(40,(hose-Ln)*.5);
         var n1=[a[0]+dx*.28+nx*bend,a[1]+dy*.28+ny*bend], n2=[a[0]+dx*.78+nx*bend*.75,a[1]+dy*.78+ny*bend*.75];
         c1=[lerp(c1[0],n1[0],w),lerp(c1[1],n1[1],w)]; c2=[lerp(c2[0],n2[0],w),lerp(c2[1],n2[1],w)]; } }
     A(el,'d',taper(a,c1,c2,e,L.w0*2,L.w1*2)); return [a,c1,c2,e]; }
-  var ar=limb(E.armR,J.shR,J.armR,J.fistR,FR,520); limb(E.armL,J.shL,J.armL,J.fistL,FL,470);
+  var ar=limb(E.armR,J.shR,J.armR,J.fistR,FR,520,J.cfR); limb(E.armL,J.shL,J.armL,J.fistL,FL,420,J.cfL);
   limb(E.legB,J.hipB,J.legB,J.shoeB,SB); limb(E.legF,J.hipF,J.legF,J.shoeF,SF);
   // brillo del brazo derecho (a lo largo del primer tramo)
   var h0=apply(B,G([566,192])), h1=apply(B,G([598,176])), h2=apply(FR,G([626,177]));
@@ -283,12 +286,12 @@ function show(u){
     var uu=walkPose(p,ph,run,1.25);
     var sw=Math.sin(ph);
     p.fR={deg:lerp(-10,-30,run)+10*sw*run, dx:lerp(HOLD.dx,-40,kick)-40*sw*run, dy:lerp(HOLD.dy,-60,kick)+36*sw*run};
-    p.fL={deg:26*kick-14*run*sw, dx:-130*kick+40*sw*run, dy:-400*kick-60*sw*run};
+    p.fL={deg:-18*kick-10*run*sw, dx:-230*kick+30*sw*run, dy:-30*kick-60*sw*run};
     p.fly=run; p.mouth=1; p.mw=20; p.mo=.72; p.mc=1;
     // pose de victoria
     var win=bump(u,8.1,8.3,8.85,9.0);
     p.fR={deg:lerp(p.fR.deg,-28,win), dx:lerp(p.fR.dx,-30,win), dy:lerp(p.fR.dy,-170,win)};
-    p.fL={deg:lerp(p.fL.deg,32,win), dx:lerp(p.fL.dx,-170,win), dy:lerp(p.fL.dy,-600,win)};
+    p.fL={deg:lerp(p.fL.deg,-30,win), dx:lerp(p.fL.dx,-260,win), dy:lerp(p.fL.dy,-150,win)};
     p.sy+=.05*win; p.by-=14*win;
   }
   // ---- 4) vuelve a la nube: se aplasta y desaparece girando
