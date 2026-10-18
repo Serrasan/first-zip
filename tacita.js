@@ -202,8 +202,8 @@ function draw(p,now){
   // gota de sudor que cae
   if(p.drop>0&&p.drop<1){ var k=p.drop; T(E.drop,'translate('+r1(960+20*k)+' '+r1(250+240*k*k)+')'); A(E.drop,'opacity',(Math.sin(Math.PI*k)).toFixed(2)); } else A(E.drop,'opacity',0);
   // tacita de espresso en la mano derecha
-  if(p.esp>.02){ var g=apply(FR,G([626,350])), mp=G([462,350]), at=clamp(p.espAt||0); var ex=lerp(g[0],mp[0],at), ey=lerp(g[1],mp[1],at);
-    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(lerp(-5,-38,at)+(p.espTilt||0))+') scale('+(2.6*(p.espScale===undefined?1:p.espScale)).toFixed(2)+')'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl));
+  if(p.esp>.02){ var g=apply(FR,G([592,362])), tk=p.espToss||0; var ex=g[0]+320*tk, ey=g[1]-620*tk+900*tk*tk;
+    T(E.esp,'translate('+r1(ex)+' '+r1(ey)+') rotate('+r1(-5+(p.espTilt||0)+560*tk)+') scale(2.6)'); A(E.esp,'opacity',p.esp.toFixed(2)); A(E.espc,'rx',r1(4+16*p.espLvl));
     for(var si=0;si<3;si++){ var ph=(now*.5+si/3)%1, sx=-40+9*si+3*Math.sin(now*2.2+si*2), sy=-34-30*ph;
       A(E['st'+si],'d','M'+r1(sx)+','+r1(sy)+' q-5,-5 0,-10 q5,-5 0,-10'); A(E['st'+si],'opacity',(p.steam*Math.sin(Math.PI*ph)*.8).toFixed(2)); } }
   else A(E.esp,'opacity',0);
@@ -217,7 +217,7 @@ function draw(p,now){
   for(var pi=0;pi<4;pi++){ var c4=E['pf'+pi], kk=clamp(pk*1.25-pi*.08);
     if(kk>0&&kk<1){ A(c4,'cx',r1(860-170*kk-30*pi)); A(c4,'cy',r1(700-90*kk+(pi%2?20:-20))); A(c4,'r',r1((14+10*pi)*Math.sin(Math.PI*kk))); A(c4,'opacity',1); } else A(c4,'opacity',0); }
   // rayos de energía alrededor
-  var BO=[[1600,520,20],[120,470,-25],[1560,1180,35],[160,1220,-35]];
+  var BO=[[1620,560,20],[60,250,-25],[1600,1180,35],[40,1060,-35]];
   for(var bi=0;bi<4;bi++){ var on=(p.bolts||0)*(Math.sin(now*31+bi*2.1)>-.2?1:0);
     T(E['bo'+bi],'translate('+BO[bi][0]+' '+BO[bi][1]+') rotate('+BO[bi][2]+') scale('+(2.3+.3*Math.sin(now*23+bi)).toFixed(2)+')'); A(E['bo'+bi],'opacity',on.toFixed(2)); }
   // gotas que salen disparadas
@@ -233,12 +233,12 @@ function draw(p,now){
 var now0=performance.now()/1000;
 function walkPose(p,phase,w,amp){ amp=amp||1;
   var u=(1-Math.cos(phase))/2, s=Math.sin(phase);
-  p.sF={deg:28*u*w*amp,dx:-34*u*w*amp,dy:52*u*w*amp};
+  p.sF={deg:24*u*w*amp,dx:-26*u*w*amp,dy:6*u*w*amp};
   p.sB={deg:-16*u*w*amp,dx:26*u*w*amp,dy:-56*u*w*amp};
   p.by+=(-10*Math.abs(s)*amp)*w; p.rot+=(-3*u*amp)*w; p.sy+=.012*Math.cos(2*phase)*w;
   return u;
 }
-var HOLD={deg:-12,dx:-120,dy:62}, SIP={deg:-20,dx:-382,dy:-36};
+var HOLD={deg:0,dx:0,dy:0}, SIP={deg:-14,dx:-337,dy:-67};
 function pulse(t,c,w){ var k=(t-c)/w; return k<0||k>1?0:Math.sin(Math.PI*k); }
 
 /* El corto completo: aparece, bebe, le sube la cafeína y desaparece (9.8 s) */
@@ -277,7 +277,7 @@ function show(u){
   var kick=ss(5.25,5.35,u)*(1-ss(8.9,9.0,u));
   if(u>=5.25){
     p.wide=kick; p.wob=Math.sin(u*40);
-    p.esp=u<5.45?1:0; p.espScale=1+3*clamp((u-5.25)/.2); if(u>=5.25&&u<5.45) p.espLvl=0;
+    var tossK=clamp((u-5.25)/.75); p.esp=u<6.0?1-ss(.75,1,tossK):0; p.espToss=tossK; p.espLvl=0; p.steam=0;
     var st=bump(u,5.25,5.4,5.55,5.8); p.sy+=.12*st; p.sx-=.06*st; p.by-=26*st; p.brow=1.5*kick;
     var jit=bump(u,5.35,5.45,5.85,5.95); p.bx+=12*Math.sin(u*95)*jit; p.rot+=3*Math.sin(u*83)*jit;
     p.spark=kick; p.twinkle=1; p.bolts=bump(u,5.35,5.45,8.6,8.85);
@@ -285,13 +285,13 @@ function show(u){
     var run=bump(u,5.85,6.05,7.95,8.15), ph=2*Math.PI*(u-5.85)*2.4;
     var uu=walkPose(p,ph,run,1.25);
     var sw=Math.sin(ph);
-    p.fR={deg:lerp(-10,-30,run)+10*sw*run, dx:lerp(HOLD.dx,-40,kick)-40*sw*run, dy:lerp(HOLD.dy,-60,kick)+36*sw*run};
-    p.fL={deg:-18*kick-10*run*sw, dx:-230*kick+30*sw*run, dy:-30*kick-60*sw*run};
+    p.fR={deg:-8*kick+12*sw*run, dx:-36*sw*run, dy:-30*kick+44*sw*run};
+    p.fL={deg:-10*sw*run, dx:34*sw*run, dy:-20*kick-44*sw*run};
     p.fly=run; p.mouth=1; p.mw=20; p.mo=.72; p.mc=1;
     // pose de victoria
     var win=bump(u,8.1,8.3,8.85,9.0);
-    p.fR={deg:lerp(p.fR.deg,-28,win), dx:lerp(p.fR.dx,-30,win), dy:lerp(p.fR.dy,-170,win)};
-    p.fL={deg:lerp(p.fL.deg,-30,win), dx:lerp(p.fL.dx,-260,win), dy:lerp(p.fL.dy,-150,win)};
+    p.fR={deg:lerp(p.fR.deg,-22,win), dx:lerp(p.fR.dx,-10,win), dy:lerp(p.fR.dy,-150,win)};
+    p.fL={deg:lerp(p.fL.deg,-14,win), dx:lerp(p.fL.dx,40,win), dy:lerp(p.fL.dy,-60,win)};
     p.sy+=.05*win; p.by-=14*win;
   }
   // ---- 4) vuelve a la nube: se aplasta y desaparece girando
