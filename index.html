@@ -1,7 +1,8 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ebead8"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="es"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ebead8"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>First Sip</title>
 <meta name="apple-mobile-web-app-title" content="First Sip">
 <meta name="application-name" content="First Sip">
+<meta name="description" content="First Sip: instruccionales de BJJ ordenados por posición y nivel, próximas competiciones con inscripción y timer de rounds para entrenar."><meta property="og:title" content="First Sip · BJJ"><meta property="og:description" content="Instruccionales, competiciones y timer de rounds de BJJ."><meta property="og:image" content="icons/icon-512.png"><meta property="og:type" content="website">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -448,6 +449,18 @@ nav.tabs::-webkit-scrollbar{display:none}
   .ttime{font-size:clamp(80px,28vw,140px)}
   .tclock{padding:20px 12px}
 }
+
+/* ---- revisión de diseño: contraste, jerarquía y detalles ---- */
+:root{--muted:#565d78;--gold-ink:#b13d0c}
+.eyebrow,.author,.play,.more,.cdate .m,.tround,.pp,.keys a,.plfoot a,.icshelp a,.peb:hover{color:var(--gold-ink)}
+.play:hover,.more:hover{color:#8f300a}
+.btn,.cact .reg{background:var(--gold-hi);border-color:var(--gold-hi)}
+.btn:hover,.cact .reg:hover{background:#a8380a;border-color:#a8380a}
+.chip[aria-pressed="true"],.segb[aria-pressed="true"],.tgl[aria-pressed="true"]{background:var(--gold-hi);border-color:var(--gold-hi)}
+.price .pv{font-size:20px;color:var(--ink)}
+.brand .txt .eyebrow{display:block;margin-bottom:2px}
+@media (min-width:961px){.hvid .grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hvid .card h3{font-size:17px}}
+@media (max-width:640px){.brand .txt .eyebrow{display:none}}
 </style>
 
 <header class="top">
@@ -455,7 +468,7 @@ nav.tabs::-webkit-scrollbar{display:none}
     <div class="brand">
       <span class="logowrap"><img src="logo.svg" alt="First Sip: taza con cinturón de BJJ"></span>
       <div class="txt">
-        
+        <span class="eyebrow">Instruccionales · Competiciones · Timer de BJJ</span>
         <h1>First <span>Sip</span></h1>
       </div>
     </div>
