@@ -1,6 +1,7 @@
-html 1214485 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
-EVENTS 1638 keys: id,title,cover_image,cover_image_fallback,url,days_to_start,eventPeriod,eventEnded,location_country,location_country_human,location_city,location_lat,location_long,categoryGroups,startdate,enddate
-SAMPLE {"id":29315,"title":"GTT CUP - Grappling / BJJ","cover_image":"https://smoothcomp.com/pictures/t/7801942-twmy/gtt-cup-grappling-bjj-2026.jpg","cover_image_fallback":"/build/webpack/img/sc/fallback.8fe47956faa4fb29c29f..jpg","url":"https://smoothcomp.com/en/event/29315","days_to_start":2,"eventPeriod":"October 24","eventEnded":false,"location_country":"DE","location_country_human":"Germany","location_city":"72766 Reutlingen, Am Heilbrunnen 50","location_lat":"48.5038465","location_long":"9.2168335","categoryGroups":["4","1"],"startdate":"2026-10-24","enddate":"2026-10-24"}
-enlaces api/json: 
-lista https://smoothcomp.com/en/events/upcoming?country=ES → 0 eventos
-añadidos 0, quitados 0, total 29
+lista https://smoothcomp.com/en/events/upcoming?country=ES → 1638 eventos
+omitido (no es BJJ) 35592 TROBADES DEL JUDO CASTELLÓ
+añadido 35795 ARANHA INTERCLUB 2026 2026-11-28 BARCELONA
+omitido (no es BJJ) 35839 IFK European Championship 2027
+omitido (no es BJJ) 28923 WORLD MMA CHAMPIONSHIPS 2027
+eventos en España: 29
+añadidos 1, quitados 0, total 30

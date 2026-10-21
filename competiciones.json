@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T12:09:34.580Z",
+ "updated": "2026-10-21T12:10:54.636Z",
  "comps": [
   {
    "cat": "",
@@ -276,6 +276,24 @@
    "src": "smoothcomp",
    "url": "https://smoothcomp.com/en/event/35538",
    "id": "sc-35538"
+  },
+  {
+   "id": "sc-35795",
+   "name": "ARANHA INTERCLUB 2026",
+   "date": "2026-11-28",
+   "end": "2026-11-28",
+   "city": "BARCELONA",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/35795",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10330174-fxvs/aranha-interclub-2026.jpg",
+   "src": "smoothcomp"
   },
   {
    "cat": "",
