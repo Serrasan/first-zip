@@ -1,10 +1,12 @@
-html 1214484 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
+html 1214475 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
+ctx 32650 86544 hcomp.com\/en\/event\/32446"},{"@type":"ListItem","position":855,"url":"https:\/\/agf.smoothcomp.com\/en\/event\/32523"},{"@type":"ListItem","position":856,"url":"https:\/\/smoothcomp.com\/en\/event\/32650"},{"@type":"ListItem","position":857,"url":"https:\/\/proopenbjj.smoothcomp.com\/en\/event\/32696"},{"@type":"ListItem","position":858,"url":"https:\/\/pbjjf.smoothcomp.com\/en\/event\/32751"},{"@type":"ListItem","position":859,"url":"https:\/\/smmaf.smoothcomp.com\/en\/event\/33210"},{"@type"
+ctx 33194 60880 moothcomp.com\/en\/event\/32711"},{"@type":"ListItem","position":574,"url":"https:\/\/smoothcomp.com\/en\/event\/33086"},{"@type":"ListItem","position":575,"url":"https:\/\/smoothcomp.com\/en\/event\/33194"},{"@type":"ListItem","position":576,"url":"https:\/\/grapplingx.smoothcomp.com\/en\/event\/33282"},{"@type":"ListItem","position":577,"url":"https:\/\/smoothcomp.com\/en\/event\/33304"},{"@type":"ListItem","position":578,"url":"https:\/\/smoothcomp.com\/en\/event\/33843"},{"@type":"ListItem",
+ctx window.__ 1667 ing?country=ES" /> <link rel="alternate" hreflang="ko" href="https://smoothcomp.com/ko/events/upcoming?country=ES" /> <script type="c1089a80bc7d6d74318822a4-text/javascript"> window.__ow = window.__ow || {}; window.__ow.organizationId = "c71acb11-08a7-44c9-bb24-f8840462a982"; window.__ow.template_id = "af515dda-66e9-4cd2-8a6c-39ae6142ddc8"; window.__ow.integration_name = "manual_settings"; window.__ow.product_name = "chatbot"; ;(function(n, t, c) { 
+ctx var events 162469 ons: [], federationCategories: [], showMap: false, bounds: null, } var coords = { lat: 51.4964, lng: -0.1224, } var locationName = 'United Kingdom' var events = [{"id":35911,"title":"test stevan","cover_image":"\/build\/webpack\/img\/sc\/fallback.8fe47956faa4fb29c29f..jpg","cover_image_fallback":"\/build\/webpack\/img\/sc\/fallback.8fe47956faa4fb29c29f..jpg","url":"https:\/\/fflutte.smoothcomp.com\/en\/event\/35911","days_to_start":0,"eventPeri
+ctx "events" -1 
+ctx events: -1 
+ctx eventUrl -1 
+ctx "title" 162495 ategories: [], showMap: false, bounds: null, } var coords = { lat: 51.4964, lng: -0.1224, } var locationName = 'United Kingdom' var events = [{"id":35911,"title":"test stevan","cover_image":"\/build\/webpack\/img\/sc\/fallback.8fe47956faa4fb29c29f..jpg","cover_image_fallback":"\/build\/webpack\/img\/sc\/fallback.8fe47956faa4fb29c29f..jpg","url":"https:\/\/fflutte.smoothcomp.com\/en\/event\/35911","days_to_start":0,"eventPeriod":"October 21","eventEnd
 enlaces api/json: 
 lista https://smoothcomp.com/en/events/upcoming?country=ES → 0 eventos
-html 1214649 bytes; muestra: <!DOCTYPE html> <html lang="es"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
-enlaces api/json: 
-lista https://smoothcomp.com/es/events/upcoming?country=ES → 0 eventos
-html 1213956 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
-enlaces api/json: 
-lista https://smoothcomp.com/en/events/upcoming → 0 eventos
 añadidos 0, quitados 0, total 29
