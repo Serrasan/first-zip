@@ -1,6 +1,7 @@
 // Actualiza competiciones.json y competiciones.ics: añade torneos nuevos de Smoothcomp (España)
 // y quita los que ya han pasado. Sin dependencias: Node 20+.
 import fs from 'node:fs';
+const LOG=[]; const _log=console.log; console.log=(...a)=>{ LOG.push(a.join(' ')); _log(...a); };
 
 const UA = { 'user-agent': 'Mozilla/5.0 (FirstSip-bot; +https://github.com/Serrasan/first-zip)', 'accept-language': 'es,en;q=0.8' };
 const LISTS = [
@@ -42,6 +43,8 @@ async function main() {
     try {
       const html = await get(u);
       for (const m of html.matchAll(/\/event\/(\d{4,6})/g)) ids.add(m[1]);
+      console.log('html', html.length, 'bytes; muestra:', html.slice(0,300).replace(/\s+/g,' '));
+      console.log('enlaces api/json:', [...new Set([...html.matchAll(/["'](\/?(?:api|en\/api)[^"']{0,80})["']/g)].map(m=>m[1]))].slice(0,15).join(' | '));
       console.log('lista', u, '→', ids.size, 'eventos');
       if (ids.size) break;
     } catch (e) { console.log('lista falla', u, e.message); }
@@ -88,4 +91,4 @@ async function main() {
   L.push('END:VCALENDAR');
   fs.writeFileSync('competiciones.ics', L.filter(Boolean).map(fold).join('\r\n') + '\r\n');
 }
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch(e => { console.log('ERROR', e.message); }).finally(() => fs.writeFileSync('actualizacion.log', LOG.join('\n') + '\n'));
