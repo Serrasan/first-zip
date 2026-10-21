@@ -461,6 +461,9 @@ nav.tabs::-webkit-scrollbar{display:none}
 .brand .txt .eyebrow{display:block;margin-bottom:2px}
 @media (min-width:961px){.hvid .grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hvid .card h3{font-size:17px}}
 @media (max-width:640px){.brand .txt .eyebrow{display:none}}
+
+/* sin precios */
+.price,.hc .hp,.peb{display:none!important}
 </style>
 
 <header class="top">
@@ -917,6 +920,7 @@ function teamBlock(c){
   box.appendChild(f);
   return box;
 }
+const posterSrc=c=>c.posterUrl||("img/"+c.poster+".jpg");
 const MES=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const MESL=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const pd=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d);};
@@ -942,8 +946,8 @@ function compCard(c){
   el.querySelector(".cmeta").textContent=[c.city,c.country,c.cat,endTxt].filter(Boolean).join(" · ");
   el.querySelector(".pv").textContent=c.price||"Consultar"; el.querySelector(".pn").textContent=c.priceNote||"";
   el.querySelector(".reg").href=c.url; el.querySelector(".cal").href=gcalUrl(c);
-  if(c.poster){ const p=document.createElement("a"); p.className="cposter"; p.href=c.url; p.target="_blank"; p.rel="noopener";
-    const im=document.createElement("img"); im.src="img/"+c.poster+".jpg"; im.alt="Cartel de "+c.name; im.loading="lazy"; p.appendChild(im);
+  if(c.poster||c.posterUrl){ const p=document.createElement("a"); p.className="cposter"; p.href=c.url; p.target="_blank"; p.rel="noopener";
+    const im=document.createElement("img"); im.src=posterSrc(c); im.alt="Cartel de "+c.name; im.loading="lazy"; p.appendChild(im);
     el.querySelector(".cdate").after(p); el.classList.add("hasp"); }
   if(canWrite && db && c.id){
     const b=document.createElement("button"); b.type="button"; b.className="peb"; b.textContent="Editar precio";
@@ -1007,7 +1011,7 @@ function buildIcs(list){
   const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//First Sip//Competiciones//ES","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:First Sip · Competiciones","X-WR-TIMEZONE:Europe/Madrid"];
   for(const c of list){
     const desc=[c.org, (c.mods||[]).map(m=>m==="gi"?"Gi":"No-Gi").join("/"), c.cat,
-      "Inscripción: "+(c.price||"Consultar")+(c.priceNote?" ("+c.priceNote+")":""),
+      
       c.deadline?"Inscripción hasta el "+c.deadline:"", c.url].filter(Boolean).join("\n");
     L.push("BEGIN:VEVENT","UID:"+c.id+"@first-sip","DTSTAMP:"+now,"DTSTART;VALUE=DATE:"+d8(c.date),"DTEND;VALUE=DATE:"+next(c.end||c.date),
       "SUMMARY:"+esc(c.name),"LOCATION:"+esc([c.city,c.country].filter(Boolean).join(", ")),"DESCRIPTION:"+esc(desc),c.url?"URL:"+c.url:"","END:VEVENT");
@@ -1050,7 +1054,7 @@ function renderHome(){
     a.innerHTML=`<div class="cdate"><span class="d">${d.getDate()}</span><span class="m">${MES[d.getMonth()]}</span></div><div><h3></h3><div class="sub"></div></div><span class="hp"></span>`;
     a.querySelector("h3").textContent=c.name;
     const sub=a.querySelector(".sub"); if(c.ex){const e=document.createElement("span");e.className="ex";e.textContent="Ejemplo";sub.appendChild(e);} sub.append([c.city,c.org,c.mods.map(m=>m==="gi"?"Gi":"No-Gi").join("/")].join(" · "));
-    a.querySelector(".hp").textContent=c.price||"";    if(c.poster){ const p=document.createElement("span"); p.className="hposter"; const im=document.createElement("img"); im.src="img/"+c.poster+".jpg"; im.alt=""; im.loading="lazy"; p.appendChild(im); a.querySelector(".cdate").after(p); a.classList.add("hasp"); }
+    a.querySelector(".hp").textContent=c.price||"";    if(c.poster||c.posterUrl){ const p=document.createElement("span"); p.className="hposter"; const im=document.createElement("img"); im.src=posterSrc(c); im.alt=""; im.loading="lazy"; p.appendChild(im); a.querySelector(".cdate").after(p); a.classList.add("hasp"); }
     hc.appendChild(a); }
   cascade($("homeVideos"),".card"); cascade(hc,".hc"); renderCountdown();
 }
@@ -1085,7 +1089,7 @@ function renderCountdown(){
   const nx=mine || COMPS.filter(c=>pd(c.date)>=todayD).sort((a,b)=>a.date<b.date?-1:1)[0];
   if(!nx){ box.hidden=true; cdTarget=null; return; }
   cdTarget=nx; box.hidden=false; box.classList.toggle("ismine",!!mine);
-  box.innerHTML=`${nx.poster?`<a class="cdp" href="#competiciones"><img src="img/${nx.poster}.jpg" alt=""></a>`:""}<span class="cdl">${mine?"🎯 Mi competición":"Próxima competición"}</span><span class="cdn"></span>
+  box.innerHTML=`${(nx.poster||nx.posterUrl)?`<a class="cdp" href="#competiciones"><img src="${posterSrc(nx)}" alt=""></a>`:""}<span class="cdl">${mine?"🎯 Mi competición":"Próxima competición"}</span><span class="cdn"></span>
     <div class="cdt" id="cdt"></div><div class="cdbar" title="Últimos 30 días"><i id="cdbar"></i></div>`;
   box.querySelector(".cdn").textContent=nx.name+" · "+(nx.city||"");
   if(mine){
@@ -1194,7 +1198,9 @@ renderChips(); render(); showView();
 
 (async()=>{
   const c = window.claude;
-  if (!c || !c.use){ videos=DKSR_DATA.videos; COMPS=DKSR_DATA.comps; render(); renderComps(); renderHome(); return; }
+  if (!c || !c.use){ videos=DKSR_DATA.videos; COMPS=DKSR_DATA.comps; render(); renderComps(); renderHome();
+    fetch("competiciones.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&Array.isArray(j.comps)&&j.comps.length){ COMPS=j.comps.map(x=>({...x,mods:x.mods||[]})); renderComps(); renderHome(); } }).catch(()=>{});
+    return; }
   const [d,user] = await Promise.all([c.use("db"),c.use("user")]);
   db = d;
   if (user){ try{ canWrite = !!(await user.canEdit()); }catch(e){} }

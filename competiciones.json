@@ -1,0 +1,578 @@
+{
+ "updated": "2026-10-21T12:05:01.785Z",
+ "comps": [
+  {
+   "cat": "",
+   "city": "Huelva",
+   "country": "España",
+   "date": "2026-10-24",
+   "deadline": "",
+   "end": "2026-10-24",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Huelva Cup 2026 – D-BJJ",
+   "org": "Smoothcomp",
+   "poster": "bd43a92245c4127349e8540e4684c9c1",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33426",
+   "id": "sc-33426"
+  },
+  {
+   "cat": "",
+   "city": "Barcelona",
+   "country": "España",
+   "date": "2026-10-24",
+   "deadline": "",
+   "end": "2026-10-24",
+   "mods": [
+    "gi"
+   ],
+   "name": "Aranha Forum Bjj GI Pro",
+   "org": "Smoothcomp",
+   "poster": "097d2db7a14cbe04c07fbfa8732f1ce8",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34060",
+   "id": "sc-34060"
+  },
+  {
+   "cat": "",
+   "city": "Altea",
+   "country": "España",
+   "date": "2026-10-24",
+   "deadline": "",
+   "end": "2026-10-24",
+   "mods": [
+    "gi"
+   ],
+   "name": "Dojjo Open Altea",
+   "org": "Smoothcomp",
+   "poster": "ce9d2e89b4532b613472c0f83b544867",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34104",
+   "id": "sc-34104"
+  },
+  {
+   "cat": "",
+   "city": "Muro de Alcoy (Alicante)",
+   "country": "España",
+   "date": "2026-10-24",
+   "deadline": "",
+   "end": "2026-10-24",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Open Muro de Alcoy",
+   "org": "Smoothcomp",
+   "poster": "dc428169ac64d13262ed27c27d30a6ea",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34115",
+   "id": "sc-34115"
+  },
+  {
+   "cat": "Campeonato europeo",
+   "city": "Lido di Ostia (Roma)",
+   "country": "Italia",
+   "date": "2026-10-28",
+   "deadline": "2026-10-18",
+   "end": "2026-11-01",
+   "mods": [
+    "nogi"
+   ],
+   "name": "European IBJJF No-Gi Championship 2026",
+   "org": "IBJJF",
+   "poster": "78a2f955007d8fe9bc947d2eacdd95ec",
+   "price": "$180",
+   "priceNote": "Completo · inscripción cerrada",
+   "src": "ibjjf",
+   "url": "https://ibjjf.com/events/european-ibjjf-jiu-jitsu-no-gi-championship-2026",
+   "id": "ibjjf-euro-nogi-2026"
+  },
+  {
+   "cat": "",
+   "city": "Sada (A Coruña)",
+   "country": "España",
+   "date": "2026-11-07",
+   "deadline": "",
+   "end": "2026-11-07",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Costa Da Morte Cup BJJ GI & NO-GI 2026",
+   "org": "Smoothcomp",
+   "poster": "dbd5f191fe10382f1f562a8e64de96bc",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33451",
+   "id": "sc-33451"
+  },
+  {
+   "cat": "",
+   "city": "Barcelona",
+   "country": "España",
+   "date": "2026-11-07",
+   "deadline": "",
+   "end": "2026-11-07",
+   "mods": [
+    "nogi"
+   ],
+   "name": "NGNW Invitational",
+   "org": "Smoothcomp",
+   "poster": "5eed0356219f1b7969a23b10bbd5b9bd",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35483",
+   "id": "sc-35483"
+  },
+  {
+   "cat": "",
+   "city": "Camas (Sevilla)",
+   "country": "España",
+   "date": "2026-11-08",
+   "deadline": "",
+   "end": "2026-11-08",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Kimura Cup Sevilla 2026",
+   "org": "Smoothcomp",
+   "poster": "a520184558ae48d7383b30b3a6b9f498",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34538",
+   "id": "sc-34538"
+  },
+  {
+   "cat": "",
+   "city": "Vinyols i els Arcs",
+   "country": "España",
+   "date": "2026-11-14",
+   "deadline": "",
+   "end": "2026-11-14",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Vinyols Challenge Fall 2026",
+   "org": "Smoothcomp",
+   "poster": "57ff22c36687249819e8582c85ae6032",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33733",
+   "id": "sc-33733"
+  },
+  {
+   "cat": "",
+   "city": "Vitoria-Gasteiz",
+   "country": "España",
+   "date": "2026-11-14",
+   "deadline": "",
+   "end": "2026-11-14",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Green Capital 2026",
+   "org": "Smoothcomp",
+   "poster": "ede8d5c9242cb9c4be59e8627633957e",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35054",
+   "id": "sc-35054"
+  },
+  {
+   "cat": "",
+   "city": "Guadalajara",
+   "country": "España",
+   "date": "2026-11-15",
+   "deadline": "",
+   "end": "2026-11-15",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "European Cup 2026 / Gi - No Gi / Kids",
+   "org": "Smoothcomp",
+   "poster": "4ce92ded813a5513c50db8f23a967e4d",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33194",
+   "id": "sc-33194"
+  },
+  {
+   "cat": "",
+   "city": "Zaragoza",
+   "country": "España",
+   "date": "2026-11-15",
+   "deadline": "",
+   "end": "2026-11-15",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "BJJPRO Zaragoza 2026 – Oso Duro",
+   "org": "Smoothcomp",
+   "poster": "d5d224d847f63b371f7912ce39a04526",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35227",
+   "id": "sc-35227"
+  },
+  {
+   "cat": "",
+   "city": "Valencia",
+   "country": "España",
+   "date": "2026-11-21",
+   "deadline": "",
+   "end": "2026-11-22",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Europe Cup BJJ 2026",
+   "org": "Smoothcomp",
+   "poster": "0fbed57bc21f7adb7c6cfb3129b3a6d7",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34652",
+   "id": "sc-34652"
+  },
+  {
+   "cat": "",
+   "city": "Cantabria",
+   "country": "España",
+   "date": "2026-11-21",
+   "deadline": "",
+   "end": "2026-11-21",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Open Cantabria 2026 – Oso Duro",
+   "org": "Smoothcomp",
+   "poster": "b32f05b5788f63e8dd00c7a3ff22a53d",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35538",
+   "id": "sc-35538"
+  },
+  {
+   "cat": "",
+   "city": "El Papiol, Barcelona",
+   "country": "España",
+   "date": "2026-12-05",
+   "deadline": "",
+   "end": "2026-12-05",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "BCN Challenge Winter 2026",
+   "org": "Smoothcomp",
+   "poster": "60a0bb11c630fb68f341e25a882ae0a4",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/32650",
+   "id": "sc-32650"
+  },
+  {
+   "cat": "",
+   "city": "Sevilla",
+   "country": "España",
+   "date": "2026-12-05",
+   "deadline": "",
+   "end": "2026-12-05",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Spain BJJ Cup GI & NO-GI 2026",
+   "org": "Smoothcomp",
+   "poster": "8413e5a58e35cfd852451f180ce2c7ae",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34441",
+   "id": "sc-34441"
+  },
+  {
+   "cat": "",
+   "city": "Baiona",
+   "country": "España",
+   "date": "2026-12-05",
+   "deadline": "",
+   "end": "2026-12-05",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Grand Slam Baiona – D-BJJ",
+   "org": "Smoothcomp",
+   "poster": "665d22fc66c3e6c4b67c14c3d745fe80",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34473",
+   "id": "sc-34473"
+  },
+  {
+   "cat": "",
+   "city": "Zaragoza",
+   "country": "España",
+   "date": "2026-12-12",
+   "deadline": "",
+   "end": "2026-12-12",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Kimura Cup Zaragoza 2026",
+   "org": "Smoothcomp",
+   "poster": "0ad0959adf6d4dfa80c92ce148205885",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35155",
+   "id": "sc-35155"
+  },
+  {
+   "cat": "",
+   "city": "La Nucía (Alicante)",
+   "country": "España",
+   "date": "2026-12-12",
+   "deadline": "",
+   "end": "2026-12-13",
+   "mods": [
+    "nogi"
+   ],
+   "name": "Campeonato de España ADCC",
+   "org": "ADCC",
+   "poster": "e5e22e719f2196380656dedac152796d",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35745",
+   "id": "sc-35745"
+  },
+  {
+   "cat": "",
+   "city": "Madrid",
+   "country": "España",
+   "date": "2026-12-13",
+   "deadline": "",
+   "end": "2026-12-13",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "All Stars BJJ Madrid",
+   "org": "Smoothcomp",
+   "poster": "6ace36c15c0f044fd2bd929d92e0722e",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33644",
+   "id": "sc-33644"
+  },
+  {
+   "cat": "",
+   "city": "Euskadi",
+   "country": "España",
+   "date": "2026-12-13",
+   "deadline": "",
+   "end": "2026-12-13",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Nacional de Euskadi 2026 – Oso Duro",
+   "org": "Smoothcomp",
+   "poster": "8af3a9703a23ce18c67e4495da08926b",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35539",
+   "id": "sc-35539"
+  },
+  {
+   "cat": "",
+   "city": "Albacete",
+   "country": "España",
+   "date": "2026-12-19",
+   "deadline": "",
+   "end": "2026-12-19",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "GSLS Albacete International Open",
+   "org": "Smoothcomp",
+   "poster": "025c1656e6ef470762929f176d2d891e",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/33821",
+   "id": "sc-33821"
+  },
+  {
+   "cat": "",
+   "city": "Ibiza",
+   "country": "España",
+   "date": "2026-12-19",
+   "deadline": "",
+   "end": "2026-12-19",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Ibiza BJJ Cup GI & NO-GI 2026",
+   "org": "Smoothcomp",
+   "poster": "29c92ad335d4c559fa4863661653d418",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34443",
+   "id": "sc-34443"
+  },
+  {
+   "cat": "Todas las categorías",
+   "city": "Poliesportiu La Mina, Sant Adrià de Besòs",
+   "country": "España",
+   "date": "2026-12-20",
+   "deadline": "",
+   "end": "",
+   "mods": [
+    "nogi"
+   ],
+   "name": "Campionat de Catalunya de Grappling",
+   "org": "Fed. Catalana de Lluita",
+   "poster": "99222c7458a7ea41f6523ea67fb63885",
+   "price": "",
+   "priceNote": "Por confirmar",
+   "src": "fcl",
+   "url": "https://www.fclluita.cat",
+   "id": "fcl-grappling-2026"
+  },
+  {
+   "cat": "",
+   "city": "Castelldefels",
+   "country": "España",
+   "date": "2027-01-09",
+   "deadline": "",
+   "end": "2027-01-10",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Cataluña BJJ Cup GI & NO-GI 2027",
+   "org": "Smoothcomp",
+   "poster": "2e4ec7df9cac0044ca116efecd920cb6",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34442",
+   "id": "sc-34442"
+  },
+  {
+   "cat": "Campeonato europeo",
+   "city": "Odivelas (Lisboa)",
+   "country": "Portugal",
+   "date": "2027-01-13",
+   "deadline": "2027-01-03",
+   "end": "2027-01-23",
+   "mods": [
+    "gi"
+   ],
+   "name": "European IBJJF Jiu-Jitsu Championship 2027",
+   "org": "IBJJF",
+   "poster": "99fee75c7e854ac18bce33c824912c73",
+   "price": "$173",
+   "priceNote": "$186 a partir del 16 nov",
+   "src": "ibjjf",
+   "url": "https://ibjjf.com/events/european-ibjjf-jiu-jitsu-championship-2027",
+   "id": "ibjjf-euro-2027"
+  },
+  {
+   "cat": "",
+   "city": "Legutiano (Álava)",
+   "country": "España",
+   "date": "2027-01-30",
+   "deadline": "",
+   "end": "2027-01-30",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Euskadi BJJ Cup GI & NO-GI 2027",
+   "org": "Smoothcomp",
+   "poster": "07a83f558597c420d1e30fcd9ab24233",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35049",
+   "id": "sc-35049"
+  },
+  {
+   "cat": "",
+   "city": "León",
+   "country": "España",
+   "date": "2027-02-27",
+   "deadline": "",
+   "end": "2027-02-27",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Abierto de León D-BJJ 2027",
+   "org": "Smoothcomp",
+   "poster": "ee9c46eff376c159d4d7cf04d67799fa",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/35370",
+   "id": "sc-35370"
+  },
+  {
+   "cat": "",
+   "city": "Madrid",
+   "country": "España",
+   "date": "2027-05-22",
+   "deadline": "",
+   "end": "2027-05-22",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "name": "Grappling Industries Madrid",
+   "org": "Smoothcomp",
+   "poster": "51a46ecdae799888468a7220c3f59284",
+   "price": "",
+   "priceNote": "Precio en Smoothcomp",
+   "src": "smoothcomp",
+   "url": "https://smoothcomp.com/en/event/34939",
+   "id": "sc-34939"
+  }
+ ]
+}
