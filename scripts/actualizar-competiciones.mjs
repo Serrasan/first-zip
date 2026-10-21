@@ -44,7 +44,8 @@ async function main() {
       const html = await get(u);
       for (const m of html.matchAll(/\/event\/(\d{4,6})/g)) ids.add(m[1]);
       console.log('html', html.length, 'bytes; muestra:', html.slice(0,300).replace(/\s+/g,' '));
-      for (const needle of ['32650','33194','window.__','var events','"events"','events:','eventUrl','"title"']) { const i = html.indexOf(needle); console.log('ctx', needle, i, i>=0 ? html.slice(Math.max(0,i-200), i+300).replace(/\s+/g,' ') : ''); }
+      { const m2 = html.match(/var events = (\[[\s\S]*?\])\s*\n/); if (m2) { try { const ev = JSON.parse(m2[1]); console.log('EVENTS', ev.length, 'keys:', Object.keys(ev[0]).join(',')); console.log('SAMPLE', JSON.stringify(ev.find(x=>/jiu|bjj/i.test(x.title))||ev[1])); } catch(e){ console.log('parse falla', e.message, m2[1].slice(-200)); } } else console.log('sin var events'); }
+      for (const needle of [] || ['32650','33194','window.__','var events','"events"','events:','eventUrl','"title"']) { const i = html.indexOf(needle); console.log('ctx', needle, i, i>=0 ? html.slice(Math.max(0,i-200), i+300).replace(/\s+/g,' ') : ''); }
       console.log('enlaces api/json:', [...new Set([...html.matchAll(/["'](\/?(?:api|en\/api)[^"']{0,80})["']/g)].map(m=>m[1]))].slice(0,15).join(' | '));
       console.log('lista', u, '→', ids.size, 'eventos');
       if (ids.size) break;
