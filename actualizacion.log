@@ -1,0 +1,10 @@
+html 1214484 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
+enlaces api/json: 
+lista https://smoothcomp.com/en/events/upcoming?country=ES → 0 eventos
+html 1214649 bytes; muestra: <!DOCTYPE html> <html lang="es"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
+enlaces api/json: 
+lista https://smoothcomp.com/es/events/upcoming?country=ES → 0 eventos
+html 1213956 bytes; muestra: <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Event Calendar - Smoothcomp <
+enlaces api/json: 
+lista https://smoothcomp.com/en/events/upcoming → 0 eventos
+añadidos 0, quitados 0, total 29
