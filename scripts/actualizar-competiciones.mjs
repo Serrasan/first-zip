@@ -44,9 +44,11 @@ async function main() {
       const html = await get(u);
       for (const m of html.matchAll(/\/event\/(\d{4,6})/g)) ids.add(m[1]);
       console.log('html', html.length, 'bytes; muestra:', html.slice(0,300).replace(/\s+/g,' '));
+      for (const needle of ['32650','33194','window.__','var events','"events"','events:','eventUrl','"title"']) { const i = html.indexOf(needle); console.log('ctx', needle, i, i>=0 ? html.slice(Math.max(0,i-200), i+300).replace(/\s+/g,' ') : ''); }
       console.log('enlaces api/json:', [...new Set([...html.matchAll(/["'](\/?(?:api|en\/api)[^"']{0,80})["']/g)].map(m=>m[1]))].slice(0,15).join(' | '));
       console.log('lista', u, '→', ids.size, 'eventos');
       if (ids.size) break;
+      break;
     } catch (e) { console.log('lista falla', u, e.message); }
   }
   // 2) detalles de los nuevos
