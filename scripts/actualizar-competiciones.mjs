@@ -37,47 +37,35 @@ function ldEvent(html) {
 }
 
 async function main() {
-  // 1) ids de eventos próximos
-  const ids = new Set();
+  // 1) Smoothcomp trae todos los torneos próximos en "var events = [...]"
+  let events = [];
   for (const u of LISTS) {
     try {
       const html = await get(u);
-      for (const m of html.matchAll(/\/event\/(\d{4,6})/g)) ids.add(m[1]);
-      console.log('html', html.length, 'bytes; muestra:', html.slice(0,300).replace(/\s+/g,' '));
-      { const m2 = html.match(/var events = (\[[\s\S]*?\])\s*\n/); if (m2) { try { const ev = JSON.parse(m2[1]); console.log('EVENTS', ev.length, 'keys:', Object.keys(ev[0]).join(',')); console.log('SAMPLE', JSON.stringify(ev.find(x=>/jiu|bjj/i.test(x.title))||ev[1])); } catch(e){ console.log('parse falla', e.message, m2[1].slice(-200)); } } else console.log('sin var events'); }
-      for (const needle of [] || ['32650','33194','window.__','var events','"events"','events:','eventUrl','"title"']) { const i = html.indexOf(needle); console.log('ctx', needle, i, i>=0 ? html.slice(Math.max(0,i-200), i+300).replace(/\s+/g,' ') : ''); }
-      console.log('enlaces api/json:', [...new Set([...html.matchAll(/["'](\/?(?:api|en\/api)[^"']{0,80})["']/g)].map(m=>m[1]))].slice(0,15).join(' | '));
-      console.log('lista', u, '→', ids.size, 'eventos');
-      if (ids.size) break;
-      break;
+      const m = html.match(/var events = (\[[\s\S]*?\])\s*\n/);
+      if (m) { events = JSON.parse(m[1]); console.log('lista', u, '→', events.length, 'eventos'); break; }
+      console.log('lista sin datos', u);
     } catch (e) { console.log('lista falla', u, e.message); }
   }
-  // 2) detalles de los nuevos
-  let added = 0;
-  for (const id of ids) {
-    if (known.has('sc-' + id)) continue;
-    const url = `https://smoothcomp.com/en/event/${id}`;
-    try {
-      const html = await get(url);
-      const e = ldEvent(html);
-      const name = dec(e?.name || meta(html, 'og:title'));
-      const start = (e?.startDate || '').slice(0, 10), end = (e?.endDate || start).slice(0, 10);
-      const addr = e?.location?.address || {};
-      const country = (typeof addr === 'string' ? '' : (addr.addressCountry?.name || addr.addressCountry || '')) + '';
-      const city = dec(typeof addr === 'string' ? addr : [addr.addressLocality, addr.addressRegion].filter(Boolean).join(', ')) || dec(e?.location?.name);
-      const img = [].concat(e?.image || [])[0] || meta(html, 'og:image');
-      const okSpain = SPAIN.test(country.trim()) || /españa|spain/i.test(JSON.stringify(e?.location || ''));
-      if (!name || !start || start < today) { console.log('omitido (sin fecha o pasado)', id, name, start); continue; }
-      if (!okSpain) { console.log('omitido (fuera de España)', id, name, country); continue; }
-      if (!SPORT.test(name + ' ' + (e?.description || ''))) { console.log('omitido (no es BJJ)', id, name); continue; }
-      const txt = (name + ' ' + (e?.description || '')).toLowerCase();
-      const mods = [/(\bgi\b|kimono)/.test(txt) ? 'gi' : null, /no[\s-]?gi|grappling|submission/.test(txt) ? 'nogi' : null].filter(Boolean);
-      comps.push({ id: 'sc-' + id, name, date: start, end, city, country: 'España', org: 'Smoothcomp', mods: mods.length ? mods : ['gi', 'nogi'],
-        cat: '', deadline: '', url, posterUrl: typeof img === 'string' ? img : img?.url, src: 'smoothcomp' });
-      known.add('sc-' + id); added++;
-      console.log('añadido', id, name, start, city);
-    } catch (err) { console.log('evento falla', id, err.message); }
+  // 2) torneos de BJJ/grappling en España que aún no tenemos
+  let added = 0, es = 0;
+  const shortCity = s => { const parts = String(s || '').split(',').map(x => x.replace(/\b\d{4,5}\b/g, '').trim()).filter(Boolean); return parts.length ? parts[parts.length - 1] : ''; };
+  for (const e of events) {
+    if (e.location_country !== 'ES' || e.eventEnded) continue;
+    es++;
+    const id = 'sc-' + e.id;
+    if (known.has(id) || !e.startdate || e.startdate < today) continue;
+    const name = dec(e.title);
+    if (!SPORT.test(name) && !(e.categoryGroups || []).includes('1')) { console.log('omitido (no es BJJ)', e.id, name); continue; }
+    const t = name.toLowerCase();
+    const gi = /\bgi\b|kimono/.test(t.replace(/no[\s-]?gi/g, '')), nogi = /no[\s-]?gi|grappling|submission|adcc/.test(t);
+    comps.push({ id, name, date: e.startdate, end: e.enddate || e.startdate, city: shortCity(e.location_city), country: 'España', org: 'Smoothcomp',
+      mods: gi || nogi ? [gi && 'gi', nogi && 'nogi'].filter(Boolean) : ['gi', 'nogi'], cat: '', deadline: '', url: e.url,
+      posterUrl: /^https?:/.test(e.cover_image || '') ? e.cover_image : '', src: 'smoothcomp' });
+    known.add(id); added++;
+    console.log('añadido', e.id, name, e.startdate, shortCity(e.location_city));
   }
+  console.log('eventos en España:', es);
   // 3) quitar pasados, ordenar y guardar
   const before = comps.length;
   comps = comps.filter(c => (c.end || c.date) >= today).sort((a, b) => a.date < b.date ? -1 : 1);
