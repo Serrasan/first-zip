@@ -1,84 +1,6 @@
 {
- "updated": "2026-10-24T05:49:32.216Z",
+ "updated": "2026-10-25T05:48:16.528Z",
  "comps": [
-  {
-   "cat": "",
-   "city": "Huelva",
-   "country": "España",
-   "date": "2026-10-24",
-   "deadline": "",
-   "end": "2026-10-24",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "Huelva Cup 2026 – D-BJJ",
-   "org": "Smoothcomp",
-   "poster": "bd43a92245c4127349e8540e4684c9c1",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/33426",
-   "id": "sc-33426"
-  },
-  {
-   "cat": "",
-   "city": "Barcelona",
-   "country": "España",
-   "date": "2026-10-24",
-   "deadline": "",
-   "end": "2026-10-24",
-   "mods": [
-    "gi"
-   ],
-   "name": "Aranha Forum Bjj GI Pro",
-   "org": "Smoothcomp",
-   "poster": "097d2db7a14cbe04c07fbfa8732f1ce8",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/34060",
-   "id": "sc-34060"
-  },
-  {
-   "cat": "",
-   "city": "Altea",
-   "country": "España",
-   "date": "2026-10-24",
-   "deadline": "",
-   "end": "2026-10-24",
-   "mods": [
-    "gi"
-   ],
-   "name": "Dojjo Open Altea",
-   "org": "Smoothcomp",
-   "poster": "ce9d2e89b4532b613472c0f83b544867",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/34104",
-   "id": "sc-34104"
-  },
-  {
-   "cat": "",
-   "city": "Muro de Alcoy (Alicante)",
-   "country": "España",
-   "date": "2026-10-24",
-   "deadline": "",
-   "end": "2026-10-24",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "Open Muro de Alcoy",
-   "org": "Smoothcomp",
-   "poster": "dc428169ac64d13262ed27c27d30a6ea",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/34115",
-   "id": "sc-34115"
-  },
   {
    "cat": "Campeonato europeo",
    "city": "Lido di Ostia (Roma)",
@@ -551,6 +473,24 @@
    "src": "smoothcomp",
    "url": "https://smoothcomp.com/en/event/35049",
    "id": "sc-35049"
+  },
+  {
+   "id": "sc-35753",
+   "name": "KIMURA CUP MADRID 2027",
+   "date": "2027-01-31",
+   "end": "2027-01-31",
+   "city": "(Madrid)",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://kimuracup.smoothcomp.com/en/event/35753",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10424911-44h7/kimura-cup-madrid-2027.jpg",
+   "src": "smoothcomp"
   },
   {
    "cat": "",
