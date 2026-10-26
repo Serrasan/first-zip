@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T05:48:16.528Z",
+ "updated": "2026-10-26T05:53:34.319Z",
  "comps": [
   {
    "cat": "Campeonato europeo",
@@ -434,6 +434,24 @@
    "src": "smoothcomp",
    "url": "https://smoothcomp.com/en/event/34442",
    "id": "sc-34442"
+  },
+  {
+   "id": "sc-34104",
+   "name": "DOJJO OPEN ALTEA",
+   "date": "2027-01-09",
+   "end": "2027-01-09",
+   "city": "Altea",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/34104",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10307147-o4el/dojjo-open-altea-2026.jpg",
+   "src": "smoothcomp"
   },
   {
    "cat": "Campeonato europeo",
