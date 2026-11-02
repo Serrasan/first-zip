@@ -1,25 +1,6 @@
 {
- "updated": "2026-11-01T05:59:07.348Z",
+ "updated": "2026-11-02T06:19:08.870Z",
  "comps": [
-  {
-   "cat": "Campeonato europeo",
-   "city": "Lido di Ostia (Roma)",
-   "country": "Italia",
-   "date": "2026-10-28",
-   "deadline": "2026-10-18",
-   "end": "2026-11-01",
-   "mods": [
-    "nogi"
-   ],
-   "name": "European IBJJF No-Gi Championship 2026",
-   "org": "IBJJF",
-   "poster": "78a2f955007d8fe9bc947d2eacdd95ec",
-   "price": "$180",
-   "priceNote": "Completo · inscripción cerrada",
-   "src": "ibjjf",
-   "url": "https://ibjjf.com/events/european-ibjjf-jiu-jitsu-no-gi-championship-2026",
-   "id": "ibjjf-euro-nogi-2026"
-  },
   {
    "cat": "",
    "city": "Sada (A Coruña)",
