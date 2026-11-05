@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T06:15:36.946Z",
+ "updated": "2026-11-05T06:17:16.280Z",
  "comps": [
   {
    "cat": "",
@@ -489,6 +489,24 @@
    "deadline": "",
    "url": "https://kimuracup.smoothcomp.com/en/event/35753",
    "posterUrl": "https://smoothcomp.com/pictures/t/10424911-44h7/kimura-cup-madrid-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-36137",
+   "name": "Polaris Open Spain - Madrid",
+   "date": "2027-02-20",
+   "end": "2027-02-20",
+   "city": "Madrid",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://polaris.smoothcomp.com/en/event/36137",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10599822-ains/polaris-open-spain-madrid-2027.jpg",
    "src": "smoothcomp"
   },
   {
