@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T06:17:16.280Z",
+ "updated": "2026-11-06T06:16:15.195Z",
  "comps": [
   {
    "cat": "",
@@ -507,6 +507,24 @@
    "deadline": "",
    "url": "https://polaris.smoothcomp.com/en/event/36137",
    "posterUrl": "https://smoothcomp.com/pictures/t/10599822-ains/polaris-open-spain-madrid-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-36243",
+   "name": "OPEN VILLANUEVA DEL RIO SEGURA",
+   "date": "2027-02-20",
+   "end": "2027-02-20",
+   "city": "Murcia",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/36243",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10641319-subu/open-villanueva-del-rio-segura-2027.jpg",
    "src": "smoothcomp"
   },
   {
