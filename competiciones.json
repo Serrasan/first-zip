@@ -1,26 +1,6 @@
 {
- "updated": "2026-11-08T06:03:58.736Z",
+ "updated": "2026-11-09T06:24:22.549Z",
  "comps": [
-  {
-   "cat": "",
-   "city": "Camas (Sevilla)",
-   "country": "España",
-   "date": "2026-11-08",
-   "deadline": "",
-   "end": "2026-11-08",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "Kimura Cup Sevilla 2026",
-   "org": "Smoothcomp",
-   "poster": "a520184558ae48d7383b30b3a6b9f498",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/34538",
-   "id": "sc-34538"
-  },
   {
    "cat": "",
    "city": "Vinyols i els Arcs",
