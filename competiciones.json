@@ -1,46 +1,6 @@
 {
- "updated": "2026-11-14T06:04:14.322Z",
+ "updated": "2026-11-15T06:08:11.301Z",
  "comps": [
-  {
-   "cat": "",
-   "city": "Vinyols i els Arcs",
-   "country": "España",
-   "date": "2026-11-14",
-   "deadline": "",
-   "end": "2026-11-14",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "Vinyols Challenge Fall 2026",
-   "org": "Smoothcomp",
-   "poster": "57ff22c36687249819e8582c85ae6032",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/33733",
-   "id": "sc-33733"
-  },
-  {
-   "cat": "",
-   "city": "Vitoria-Gasteiz",
-   "country": "España",
-   "date": "2026-11-14",
-   "deadline": "",
-   "end": "2026-11-14",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "Green Capital 2026",
-   "org": "Smoothcomp",
-   "poster": "ede8d5c9242cb9c4be59e8627633957e",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/35054",
-   "id": "sc-35054"
-  },
   {
    "cat": "",
    "city": "Guadalajara",
