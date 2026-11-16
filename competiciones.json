@@ -1,46 +1,6 @@
 {
- "updated": "2026-11-15T06:08:11.301Z",
+ "updated": "2026-11-16T13:45:21.226Z",
  "comps": [
-  {
-   "cat": "",
-   "city": "Guadalajara",
-   "country": "España",
-   "date": "2026-11-15",
-   "deadline": "",
-   "end": "2026-11-15",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "European Cup 2026 / Gi - No Gi / Kids",
-   "org": "Smoothcomp",
-   "poster": "4ce92ded813a5513c50db8f23a967e4d",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/33194",
-   "id": "sc-33194"
-  },
-  {
-   "cat": "",
-   "city": "Zaragoza",
-   "country": "España",
-   "date": "2026-11-15",
-   "deadline": "",
-   "end": "2026-11-15",
-   "mods": [
-    "gi",
-    "nogi"
-   ],
-   "name": "BJJPRO Zaragoza 2026 – Oso Duro",
-   "org": "Smoothcomp",
-   "poster": "d5d224d847f63b371f7912ce39a04526",
-   "price": "",
-   "priceNote": "Precio en Smoothcomp",
-   "src": "smoothcomp",
-   "url": "https://smoothcomp.com/en/event/35227",
-   "id": "sc-35227"
-  },
   {
    "cat": "",
    "city": "Valencia",
@@ -465,6 +425,24 @@
    "src": "smoothcomp",
    "url": "https://smoothcomp.com/en/event/35370",
    "id": "sc-35370"
+  },
+  {
+   "id": "sc-36550",
+   "name": "KIMURA CUP SALOU 2027",
+   "date": "2027-02-27",
+   "end": "2027-02-27",
+   "city": "Salou - Tarragona",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://kimuracup.smoothcomp.com/en/event/36550",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10789974-u90q/kimura-cup-salou-2027.jpg",
+   "src": "smoothcomp"
   },
   {
    "cat": "",
