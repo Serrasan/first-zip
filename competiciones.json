@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T14:35:42.559Z",
+ "updated": "2026-11-18T14:12:21.075Z",
  "comps": [
   {
    "cat": "",
@@ -442,6 +442,24 @@
    "deadline": "",
    "url": "https://kimuracup.smoothcomp.com/en/event/36550",
    "posterUrl": "https://smoothcomp.com/pictures/t/10789974-u90q/kimura-cup-salou-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-36595",
+   "name": "KIMURA CUP ALICANTE 2027",
+   "date": "2027-05-01",
+   "end": "2027-05-01",
+   "city": "Mutxamel - Alicante",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://kimuracup.smoothcomp.com/en/event/36595",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10803565-cqr0/kimura-cup-alicante-2027.jpg",
    "src": "smoothcomp"
   },
   {
