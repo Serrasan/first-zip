@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T14:12:21.075Z",
+ "updated": "2026-11-19T14:29:47.488Z",
  "comps": [
   {
    "cat": "",
@@ -442,6 +442,23 @@
    "deadline": "",
    "url": "https://kimuracup.smoothcomp.com/en/event/36550",
    "posterUrl": "https://smoothcomp.com/pictures/t/10789974-u90q/kimura-cup-salou-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-35896",
+   "name": "TACTICAL SUBMISSION",
+   "date": "2027-04-10",
+   "end": "2027-04-10",
+   "city": "Llinars del Vallès",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/35896",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10815512-ojsg/tactical-submission-2027.jpg",
    "src": "smoothcomp"
   },
   {
