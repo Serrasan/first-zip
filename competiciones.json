@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T15:57:39.476Z",
+ "updated": "2026-11-25T15:44:14.674Z",
  "comps": [
   {
    "id": "sc-35795",
@@ -402,6 +402,24 @@
    "deadline": "",
    "url": "https://kimuracup.smoothcomp.com/en/event/36550",
    "posterUrl": "https://smoothcomp.com/pictures/t/10789974-u90q/kimura-cup-salou-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-36798",
+   "name": "CASTILLA Y LEÓN BJJ CUP GI & NO-GI 2027",
+   "date": "2027-03-13",
+   "end": "2027-03-13",
+   "city": "León",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://spainbjjtour.smoothcomp.com/en/event/36798",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10907865-wq6z/castilla-y-leon-bjj-cup-gi-no-gi-2027.jpg",
    "src": "smoothcomp"
   },
   {
