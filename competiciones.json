@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T15:44:14.674Z",
+ "updated": "2026-11-26T15:25:41.114Z",
  "comps": [
   {
    "id": "sc-35795",
@@ -331,6 +331,24 @@
    "src": "smoothcomp"
   },
   {
+   "id": "sc-36018",
+   "name": "LLEIDA CHALLENGE 2027",
+   "date": "2027-02-14",
+   "end": "2027-02-14",
+   "city": "Lleida",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/36018",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10922055-mix3/lleida-challenge-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
    "id": "sc-36137",
    "name": "Polaris Open Spain - Madrid",
    "date": "2027-02-20",
@@ -405,6 +423,24 @@
    "src": "smoothcomp"
   },
   {
+   "id": "sc-36802",
+   "name": "XVIII CAMPEONATO DE ESPAÑA 2027",
+   "date": "2027-02-28",
+   "end": "2027-02-28",
+   "city": "Guadalajara",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://aejjb.smoothcomp.com/en/event/36802",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10920671-zffr/xviii-campeonato-de-espana-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
    "id": "sc-36798",
    "name": "CASTILLA Y LEÓN BJJ CUP GI & NO-GI 2027",
    "date": "2027-03-13",
@@ -437,6 +473,24 @@
    "deadline": "",
    "url": "https://smoothcomp.com/en/event/35896",
    "posterUrl": "https://smoothcomp.com/pictures/t/10815512-ojsg/tactical-submission-2027.jpg",
+   "src": "smoothcomp"
+  },
+  {
+   "id": "sc-36666",
+   "name": "YAMATO CHAMPIONSHIP",
+   "date": "2027-04-10",
+   "end": "2027-04-10",
+   "city": "Barcelona",
+   "country": "España",
+   "org": "Smoothcomp",
+   "mods": [
+    "gi",
+    "nogi"
+   ],
+   "cat": "",
+   "deadline": "",
+   "url": "https://smoothcomp.com/en/event/36666",
+   "posterUrl": "https://smoothcomp.com/pictures/t/10921658-lm6k/yamato-championship-2027.jpg",
    "src": "smoothcomp"
   },
   {
